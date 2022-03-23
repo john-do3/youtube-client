@@ -15,8 +15,10 @@
         "createDefaultProgram": true
       },
       "extends": [
+        "airbnb-base",
+        "airbnb-typescript/base",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
+        "plugin:@angular-eslint/template/process-inline-templates"        
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -35,6 +37,12 @@
             "style": "kebab-case"
           }
         ],
+        "no-console": "off",
+        "max-len": ["error", { "code": 120 }],
+        "import/prefer-default-export": "off",
+        "@typescript-eslint/no-useless-constructor":"off",
+        "class-methods-use-this": "off",
+        "trailing-comma": "off",
         "no-empty-function": "off",
         "@typescript-eslint/no-empty-function": "off",
         "@angular-eslint/no-empty-lifecycle-method": "off"

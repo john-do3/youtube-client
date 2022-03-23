@@ -25,12 +25,12 @@ import { RegisterComponent } from './admin/register/register.component';
     VideoCardComponent,
     CreateCardComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
