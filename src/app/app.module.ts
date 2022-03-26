@@ -12,6 +12,10 @@ import { VideoCardComponent } from './cards/video-card/video-card.component';
 import { CreateCardComponent } from './cards/create-card/create-card.component';
 import { LoginComponent } from './admin/login/login.component';
 import { RegisterComponent } from './admin/register/register.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -29,6 +33,10 @@ import { RegisterComponent } from './admin/register/register.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
