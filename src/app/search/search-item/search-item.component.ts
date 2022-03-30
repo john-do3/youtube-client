@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment/moment';
-import { ISearchItem } from '../search-item.model';
+import { ISearchItem } from '../../models/search-item.model';
 
 @Component({
   selector: 'app-search-item',
@@ -20,7 +20,7 @@ export class SearchItemComponent implements OnInit {
     // If a publication date is less than 7 days, set border background to blue
     // If a publication date is more than 6 months, set border background to red
     let color = 'red';
-    // let cardDate = new Date(this.data.snippet.publishedAt);
+
     const monthsElapsed = moment().diff(moment(this.data.snippet.publishedAt), 'months');
     if (monthsElapsed < 1) {
       color = 'green';

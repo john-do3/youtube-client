@@ -2,8 +2,9 @@
   <app-header
     title="{{ title }}"
     (searchClicked)="onSearchClicked($event)"
+    (sortClicked)="onSortClicked($event)"
   ></app-header>
-  <app-search-results
+  <app-search-results #searchResults
     [ngClass]="{ hiddenCls: !isSearchResultsVisible }"
   ></app-search-results>
   <!--app-search-results></app-search-results-->

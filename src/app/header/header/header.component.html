@@ -18,7 +18,7 @@
       <div class="search-button" (click)="searchClick()"></div>
       <div style="width: 10px"></div>
 
-      <div class="search-settings-button" (click)="searchSettingsClick()"></div>
+      <div class="search-settings-button" [ngClass]="{ hiddenCls: !isSearchClicked }" (click)="searchSettingsClick()"></div>
       <div style="width: 50px"></div>
 
       <label>Your name</label>
@@ -29,7 +29,7 @@
 
     <mat-toolbar-row [ngClass]="{ hiddenCls: !isSearchSettingsVisible }">
       <span class="spacer"></span>
-      <app-search-settings></app-search-settings>
+      <app-search-settings (sortClicked)="onSortClicked($event)"></app-search-settings>
       <span class="spacer"></span>
     </mat-toolbar-row>
   </mat-toolbar>

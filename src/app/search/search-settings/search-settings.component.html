@@ -1,7 +1,7 @@
 <div class="div-row">
-    <div class="sort-label">Sorting by:</div>
-    <div class="sort-link">date</div>
-    <div class="sort-link">count of views</div>
-    <div class="sort-link">by word or sentance</div>    
-    <input class="sort-input">    
+  <div class="sort-label">Sorting by:</div>
+  <div class="sort-link" (click)="onSort('date')">{{ dateTitle }}</div>
+  <div class="sort-link" (click)="onSort('views')">{{ viewsTitle }}</div>
+  <div class="sort-link">by word or sentance</div>
+  <input class="sort-input" />
 </div>

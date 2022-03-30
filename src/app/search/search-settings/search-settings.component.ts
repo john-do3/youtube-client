@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ISortModel } from 'src/app/models/sort.model';
 
 @Component({
   selector: 'app-search-settings',
@@ -6,8 +7,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./search-settings.component.scss'],
 })
 export class SearchSettingsComponent implements OnInit {
+  // sort types for date and views / is ascending
+  dateTitle: string = 'date';
+  viewsTitle: string = 'count of views';
+
+  sortTypes: Record<string, boolean> = {
+    'date': false,
+    'views': false,
+  };
+
+  @Output()
+  sortClicked: EventEmitter<ISortModel> = new EventEmitter<ISortModel>();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSort(sortType: string): void {
+    let currentDirection = !this.sortTypes[sortType];
+    this.dateTitle = 'date';
+    this.viewsTitle = 'count of views';
+
+    let directionSign = currentDirection ? '▲' : '▼';
+
+    if (sortType == 'date')
+      this.dateTitle = `${this.dateTitle} ${directionSign}`;
+    else
+      this.viewsTitle = `${this.dateTitle} ${directionSign}`;
+
+    this.sortClicked.emit({ type: sortType, isAscending: currentDirection });
+
+    // swap current direction asc/desc
+    this.sortTypes[sortType] = currentDirection;
   }
 }
