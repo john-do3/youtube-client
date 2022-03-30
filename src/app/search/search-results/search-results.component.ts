@@ -697,7 +697,7 @@ export class SearchResultsComponent implements OnInit {
         etag: '"Fznwjl6JEQdo1MGvHOGaz_YanRU/KuFm1jGNMzgjE2VlAEsPgRVra4o"',
         id: 'G0bBLvWXBvc',
         snippet: {
-          publishedAt: '2019-09-16T16:53:41.000Z',
+          publishedAt: '2022-01-16T16:53:41.000Z',
           channelId: 'UCsBjURrPoezykLs9EqgamOA',
           title: "Angular for Beginners - Let's build a Tic-Tac-Toe PWA",
           description: 'Learn the basics of Angular 8 🚀 by building a tic-tac-toe game 🕹️ from scratch...Then deploy it as an installable progressive web app (PWA). Go beyond the basics 👉https://fireship.io/courses/angular/\n\nFull Source Code: https://github.com/fireship-io/angular-tic-tac-toe\nAngular Docs: https://angular.io/\n\n#angular #pwa #tutorial\n\nTake Angular quizzes 🤓\n\niOS https://itunes.apple.com/us/app/fireship/id1462592372?mt=8\nAndroid https://play.google.com/store/apps/details?id=io.fireship.quizapp\n\nUpgrade to Fireship PRO at https://fireship.io/pro\nUse code lORhwXd2 for 25% off your first payment.',
@@ -792,6 +792,7 @@ export class SearchResultsComponent implements OnInit {
           if (aParam > bParam) return 1;
         }
       }
+      
       return 0;
     });
 
