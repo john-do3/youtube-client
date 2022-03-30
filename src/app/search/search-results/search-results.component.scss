@@ -1,0 +1,17 @@
+.grid-search-item {
+  padding: 20px;
+}
+
+.middle-row {
+  max-width: 1150px;
+  overflow: hidden;
+  margin: auto !important;
+}
+
+.mat-grid-tile {
+  border: solid 1px #cdcdcd;
+  box-shadow: 1px 1px 15px -2px rgb(0 0 0 / 15%);
+  border-radius: 6px;
+  width: 270;
+  height: 330;
+}

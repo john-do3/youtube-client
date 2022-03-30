@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'youtube-client';
+
+  isSearchResultsVisible: boolean = false;
+
+  onSearchClicked(ev: any) {
+    this.isSearchResultsVisible = true;
+  }
 }

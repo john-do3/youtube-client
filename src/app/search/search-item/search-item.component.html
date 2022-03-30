@@ -1,1 +1,44 @@
-<p>search-item works!</p>
+<!--mat-card class="example-card" [style.background]="'#E5E5E5'">
+  <img
+    mat-card-image
+    class="thumbnail"
+    src="{{ data.snippet.thumbnails.high.url }}"
+  />
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{ data.snippet.title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>    
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button>MORE</button>
+  </mat-card-actions>
+</mat-card-->
+
+<div class="card_1" [ngStyle]="getCardStyle()">
+  <img class="thumbnail" src="{{ data.snippet.thumbnails.high.url }}" />
+  <div class="div-row stats">
+    <div class="spacer"></div>
+    <div class="img-icon-viewed"></div>
+    <div>{{ data.statistics.viewCount }}</div>
+    <div class="img-icon-liked"></div>
+    <div>{{ data.statistics.likeCount }}</div>
+    <div class="img-icon-disliked"></div>
+    <div>{{ data.statistics.dislikeCount }}</div>
+    <div class="img-icon-commented"></div>
+    <div>{{ data.statistics.commentCount }}</div>
+    <div class="spacer"></div>
+  </div>
+  <div style="height: 15px"></div>
+  <div class="mat-h2 card-title">
+    {{
+      data.snippet.title.length > 20
+        ? (data.snippet.title | slice: 0:20) + "..."
+        : data.snippet.title
+    }}
+  </div>
+  <div style="height: 40px"></div>
+  <div class="more-button more-text">
+    <div class="cnt-row-centered">more...</div>
+  </div>
+</div>

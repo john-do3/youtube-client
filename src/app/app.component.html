@@ -1,3 +1,10 @@
 <div class="main">
-<app-header title="{{ title }}"></app-header>
+  <app-header
+    title="{{ title }}"
+    (searchClicked)="onSearchClicked($event)"
+  ></app-header>
+  <app-search-results
+    [ngClass]="{ hiddenCls: !isSearchResultsVisible }"
+  ></app-search-results>
+  <!--app-search-results></app-search-results-->
 </div>

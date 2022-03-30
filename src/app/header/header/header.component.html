@@ -1,22 +1,36 @@
 <p>
-    <mat-toolbar color="primary" class="youtube-toolbar">
-      <mat-toolbar-row>
-        <span>{{title}}</span>
-        <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </mat-toolbar-row>
-  
-      <mat-toolbar-row>
-        <span>// todo settings</span>
-        <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-          <mat-icon>favorite</mat-icon>
-        </button>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-          <mat-icon>share</mat-icon>
-        </button>
-      </mat-toolbar-row>
-    </mat-toolbar>
+  <mat-toolbar color="primary" class="youtube-toolbar">
+    <mat-toolbar-row>
+      <span class="spacer"></span>
+      <div class="logo"></div>
+      <div style="width: 10px"></div>
+
+      <div style="font-size: 12px">
+        <mat-form-field [style.width.px]="400">
+          <mat-label>search</mat-label>
+          <input
+            matInput
+            placeholder="What are you want to find out?"
+            #searchInput="matInput"
+          />
+        </mat-form-field>
+      </div>
+      <div class="search-button" (click)="searchClick()"></div>
+      <div style="width: 10px"></div>
+
+      <div class="search-settings-button" (click)="searchSettingsClick()"></div>
+      <div style="width: 50px"></div>
+
+      <label>Your name</label>
+      <div style="width: 5px"></div>
+      <div class="login-button" (click)="loginClick()"></div>
+      <span class="spacer"></span>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row [ngClass]="{ hiddenCls: !isSearchSettingsVisible }">
+      <span class="spacer"></span>
+      <app-search-settings></app-search-settings>
+      <span class="spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
 </p>
