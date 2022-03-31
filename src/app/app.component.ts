@@ -10,23 +10,23 @@ import { SearchResultsComponent } from './search/search-results/search-results.c
 })
 export class AppComponent {
   title = 'youtube-client';
+
   filterCriteria!: IFilter;
 
   isSearchResultsVisible: boolean = false;
 
   @ViewChild('searchResults')
-  searchResults!: SearchResultsComponent;
+    searchResults!: SearchResultsComponent;
 
-  onSearchClicked(ev: any) {
+  onSearchClicked() {
     this.isSearchResultsVisible = true;
   }
 
-  onSortClicked(ev: ISortModel){
+  onSortClicked(ev: ISortModel) {
     this.searchResults.sortData(ev);
   }
 
-  onFilterClicked(ev: IFilter){
+  onFilterClicked(ev: IFilter) {
     this.filterCriteria = ev;
   }
-
 }

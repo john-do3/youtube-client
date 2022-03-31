@@ -1,4 +1,4 @@
 export interface ISortModel {
-    type: string;
-    isAscending: boolean; 
+  type: string;
+  isAscending: boolean;
 }

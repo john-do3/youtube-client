@@ -12,21 +12,22 @@ import { ISortModel } from 'src/app/models/sort.model';
 })
 export class HeaderComponent implements OnInit {
   isSearchSettingsVisible: boolean = false;
+
   isSearchClicked: boolean = false;
-  
+
   @ViewChild('searchInput')
-  searchInput!: MatInput;
+    searchInput!: MatInput;
 
   @Input() title: string = '';
 
   @Output()
-  searchClicked: EventEmitter<Object> = new EventEmitter<Object>();
+    searchClicked: EventEmitter<Object> = new EventEmitter<Object>();
 
   @Output()
-  sortClicked: EventEmitter<ISortModel> = new EventEmitter<ISortModel>();
+    sortClicked: EventEmitter<ISortModel> = new EventEmitter<ISortModel>();
 
   @Output()
-  filterClicked: EventEmitter<IFilter> = new EventEmitter<IFilter>();
+    filterClicked: EventEmitter<IFilter> = new EventEmitter<IFilter>();
 
   constructor() { }
 
@@ -35,7 +36,7 @@ export class HeaderComponent implements OnInit {
 
   searchClick() {
     if (this.searchInput.value) {
-       this.searchClicked.emit();
+      this.searchClicked.emit();
       this.isSearchClicked = true;
     }
   }
@@ -44,12 +45,11 @@ export class HeaderComponent implements OnInit {
     this.isSearchSettingsVisible = !this.isSearchSettingsVisible;
   }
 
-  onSortClicked(sortType:ISortModel){
+  onSortClicked(sortType:ISortModel) {
     this.sortClicked.emit(sortType);
   }
 
-  onFilterClicked(filterCriteria: IFilter)
-  {
+  onFilterClicked(filterCriteria: IFilter) {
     this.filterClicked.emit(filterCriteria);
   }
 

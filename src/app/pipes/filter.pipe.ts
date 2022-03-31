@@ -3,19 +3,17 @@ import { IFilter } from '../models/filter.model';
 import { ISearchItem } from '../models/search-item.model';
 
 @Pipe({
-    name: 'filter',
-    pure: false
+  name: 'filter',
+  pure: false,
 })
 export class FilterPipe implements PipeTransform {
-    transform(items: ISearchItem[], filter: IFilter): any {
-        if (!items || !filter) {
-            return items;
-        }
-        // filter items array, items which match and return true will be
-        // kept, false will be filtered out
-        if (filter.title)
-            return items.filter(item => item.snippet.title.indexOf(filter.title) !== -1);
-        else
-            return items;
+  transform(items: ISearchItem[], filter: IFilter): any {
+    if (!items || !filter) {
+      return items;
     }
+    // filter items array, items which match and return true will be
+    // kept, false will be filtered out
+    if (filter.title) { return items.filter((item) => item.snippet.title.indexOf(filter.title) !== -1); }
+    return items;
+  }
 }

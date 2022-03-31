@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SearchItemComponent } from './search/search-item/search-item.component';
 import { SearchResultsComponent } from './search/search-results/search-results.component';
@@ -20,7 +21,6 @@ import { CreateCardComponent } from './cards/create-card/create-card.component';
 import { LoginComponent } from './admin/login/login.component';
 import { RegisterComponent } from './admin/register/register.component';
 import { FilterPipe } from './pipes/filter.pipe';
-import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,7 @@ import { FormsModule } from '@angular/forms';
     CreateCardComponent,
     LoginComponent,
     RegisterComponent,
-    FilterPipe,    
+    FilterPipe,
   ],
   imports: [
     BrowserModule,

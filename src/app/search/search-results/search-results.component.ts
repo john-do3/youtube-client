@@ -765,7 +765,8 @@ export class SearchResultsComponent implements OnInit {
   };
 
   @Input()
-  filterCriteria!: IFilter;
+    filterCriteria!: IFilter;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -776,28 +777,25 @@ export class SearchResultsComponent implements OnInit {
       let aParam = null;
       let bParam = null;
 
-      if (sortType.type == 'date') {
+      if (sortType.type === 'date') {
         aParam = moment(a.snippet.publishedAt);
         bParam = moment(b.snippet.publishedAt);
-      }
-      else if (sortType.type == 'views') {
-        aParam = parseInt(a.statistics.viewCount);
-        bParam = parseInt(b.statistics.viewCount);
+      } else if (sortType.type === 'views') {
+        aParam = Number(a.statistics.viewCount);
+        bParam = Number(b.statistics.viewCount);
       }
 
       if (aParam && bParam) {
         if (sortType.isAscending) {
           if (aParam < bParam) return 1;
           if (aParam > bParam) return -1;
-        }
-        else {
+        } else {
           if (aParam < bParam) return -1;
           if (aParam > bParam) return 1;
         }
       }
-      
+
       return 0;
     });
-
   }
 }
