@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
+import { IFilter } from 'src/app/models/filter.model';
 import { ISearchItem } from 'src/app/models/search-item.model';
 import { ISortModel } from 'src/app/models/sort.model';
 import { ISearchResponse } from '../../models/search-response.model';
@@ -763,6 +764,8 @@ export class SearchResultsComponent implements OnInit {
     ],
   };
 
+  @Input()
+  filterCriteria!: IFilter;
   constructor() { }
 
   ngOnInit(): void {

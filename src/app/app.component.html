@@ -3,9 +3,11 @@
     title="{{ title }}"
     (searchClicked)="onSearchClicked($event)"
     (sortClicked)="onSortClicked($event)"
+    (filterClicked)="onFilterClicked($event)"
   ></app-header>
   <app-search-results #searchResults
     [ngClass]="{ hiddenCls: !isSearchResultsVisible }"
+    [filterCriteria]="filterCriteria"
   ></app-search-results>
   <!--app-search-results></app-search-results-->
 </div>

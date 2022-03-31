@@ -2,6 +2,6 @@
   <div class="sort-label">Sorting by:</div>
   <div class="sort-link" (click)="onSort('date')">{{ dateTitle }}</div>
   <div class="sort-link" (click)="onSort('views')">{{ viewsTitle }}</div>
-  <div class="sort-link">by word or sentance</div>
-  <input class="sort-input" />
+  <div class="sort-label2" (click)="onFilter()">by word or sentence</div>
+  <input [(ngModel)]="filterCriteria" (keyup)="onFilter()" class="sort-input" />
 </div>

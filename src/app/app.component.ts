@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { IFilter } from './models/filter.model';
 import { ISortModel } from './models/sort.model';
 import { SearchResultsComponent } from './search/search-results/search-results.component';
 
@@ -9,6 +10,7 @@ import { SearchResultsComponent } from './search/search-results/search-results.c
 })
 export class AppComponent {
   title = 'youtube-client';
+  filterCriteria!: IFilter;
 
   isSearchResultsVisible: boolean = false;
 
@@ -20,7 +22,11 @@ export class AppComponent {
   }
 
   onSortClicked(ev: ISortModel){
-    console.log(ev);
     this.searchResults.sortData(ev);
   }
+
+  onFilterClicked(ev: IFilter){
+    this.filterCriteria = ev;
+  }
+
 }

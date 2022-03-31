@@ -19,6 +19,8 @@ import { VideoCardComponent } from './cards/video-card/video-card.component';
 import { CreateCardComponent } from './cards/create-card/create-card.component';
 import { LoginComponent } from './admin/login/login.component';
 import { RegisterComponent } from './admin/register/register.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,9 +35,11 @@ import { RegisterComponent } from './admin/register/register.component';
     CreateCardComponent,
     LoginComponent,
     RegisterComponent,
+    FilterPipe,    
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,

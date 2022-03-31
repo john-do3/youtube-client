@@ -2,6 +2,7 @@ import {
   Component, Input, OnInit, Output, EventEmitter, ViewChild,
 } from '@angular/core';
 import { MatInput } from '@angular/material/input';
+import { IFilter } from 'src/app/models/filter.model';
 import { ISortModel } from 'src/app/models/sort.model';
 
 @Component({
@@ -24,6 +25,9 @@ export class HeaderComponent implements OnInit {
   @Output()
   sortClicked: EventEmitter<ISortModel> = new EventEmitter<ISortModel>();
 
+  @Output()
+  filterClicked: EventEmitter<IFilter> = new EventEmitter<IFilter>();
+
   constructor() { }
 
   ngOnInit(): void {
@@ -42,6 +46,11 @@ export class HeaderComponent implements OnInit {
 
   onSortClicked(sortType:ISortModel){
     this.sortClicked.emit(sortType);
+  }
+
+  onFilterClicked(filterCriteria: IFilter)
+  {
+    this.filterClicked.emit(filterCriteria);
   }
 
   loginClick() {
