@@ -21,6 +21,7 @@ import { CreateCardComponent } from './cards/create-card/create-card.component';
 import { LoginComponent } from './admin/login/login.component';
 import { RegisterComponent } from './admin/register/register.component';
 import { FilterPipe } from './pipes/filter.pipe';
+import { CardStyleDirective } from './search/search-item/card-style.directive';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FilterPipe } from './pipes/filter.pipe';
     LoginComponent,
     RegisterComponent,
     FilterPipe,
+    CardStyleDirective,
   ],
   imports: [
     BrowserModule,
