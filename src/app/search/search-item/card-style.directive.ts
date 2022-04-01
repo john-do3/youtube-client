@@ -1,27 +1,19 @@
 import {
   AfterViewInit,
-  Directive, ElementRef, Input, Renderer2,
+  Directive, ElementRef, Input, OnChanges, Renderer2, SimpleChanges,
 } from '@angular/core';
 import * as moment from 'moment';
 
 @Directive({
   selector: '[appCardStyleDirective]',
 })
-export class CardStyleDirective implements AfterViewInit {
+export class CardStyleDirective implements OnChanges {
   @Input() date!: string;
 
-  borderStyle: string = '';
+  constructor(private el: ElementRef, private renderer2: Renderer2) {  }
 
-  el: ElementRef;
-
-  renderer: Renderer2;
-
-  constructor(el: ElementRef, renderer: Renderer2) {
-    this.el = el;
-    this.renderer = renderer;
-  }
-
-  ngAfterViewInit() {
+  ngOnChanges(): void {    
+  
     // If a publication date is less than a month, set border background to green
     // If a publication date is less than 7 days, set border background to blue
     // If a publication date is more than 6 months, set border background to red
@@ -35,6 +27,6 @@ export class CardStyleDirective implements AfterViewInit {
       if (daysElapsed < 7) color = 'blue';
     }
 
-    this.renderer.setStyle(this.el.nativeElement, 'border-bottom', `5px solid ${color}`);
+    this.renderer2.setStyle(this.el.nativeElement, 'border-bottom', `5px solid ${color}`);
   }
 }
