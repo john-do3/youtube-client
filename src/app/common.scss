@@ -1,0 +1,19 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.background-img {
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.div-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cnt-row-centered {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}

@@ -1,8 +1,44 @@
-.youtube-toolbar {
-    color:#4F4F4F;
-    background-color: #E5E5E5;
+@import "../../common.scss";
+
+.hiddenCls {
+  display: none;
 }
 
-.example-spacer {
-    flex: 1 1 auto;
-  }
+.youtube-toolbar {
+  color: #4f4f4f;
+  background-color: #e5e5e5;
+  font-size: 14px;
+}
+
+.img-button {
+  @extend .background-img !optional;
+  cursor: pointer;
+}
+
+.logo {
+  @extend .background-img;
+  background-image: url(./img/logo.png);
+  width: 50px;
+  height: 59px;
+}
+
+.search-button {
+  @extend .img-button;
+  background-image: url(./img/search_button.png);
+  width: 80px;
+  height: 24px;
+}
+
+.search-settings-button {
+  @extend .img-button;
+  background-image: url(./img/search_settings.png);
+  width: 24px;
+  height: 24px;
+}
+
+.login-button {
+  @extend .img-button;
+  background-image: url(./img/login.png);
+  width: 31px;
+  height: 32px;
+}
