@@ -1,38 +1,45 @@
 import {
-  Component, Input, OnInit, Output, EventEmitter, ViewChild,
+  Component, Input, OnInit, Output, EventEmitter, ViewChild, OnChanges,
 } from '@angular/core';
 import { MatInput } from '@angular/material/input';
+import { Router } from '@angular/router';
 import { IFilter } from 'src/app/youtube/models/filter.model';
 import { ISortModel } from 'src/app/youtube/models/sort.model';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
   isSearchSettingsVisible: boolean = false;
 
   isSearchClicked: boolean = false;
 
+  userName!: string | null;
   @ViewChild('searchInput')
-    searchInput!: MatInput;
+  searchInput!: MatInput;
+
+  @Input() isLoggedIn: boolean = false;
 
   @Input() title: string = '';
 
   @Output()
-    searchClicked: EventEmitter<Object> = new EventEmitter<Object>();
+  searchClicked: EventEmitter<Object> = new EventEmitter<Object>();
 
   @Output()
-    sortClicked: EventEmitter<ISortModel> = new EventEmitter<ISortModel>();
+  sortClicked: EventEmitter<ISortModel> = new EventEmitter<ISortModel>();
 
   @Output()
-    filterClicked: EventEmitter<IFilter> = new EventEmitter<IFilter>();
+  filterClicked: EventEmitter<IFilter> = new EventEmitter<IFilter>();
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(private userService: UserService, private router: Router) {
+    router.events.subscribe((val) =>{
+      this.userName = this.userService.getUserName();
+      this.isLoggedIn = this.userService.checkIsLoggedIn();
+    })
+   }
 
   searchClick() {
     if (this.searchInput.value) {
@@ -45,7 +52,7 @@ export class HeaderComponent implements OnInit {
     this.isSearchSettingsVisible = !this.isSearchSettingsVisible;
   }
 
-  onSortClicked(sortType:ISortModel) {
+  onSortClicked(sortType: ISortModel) {
     this.sortClicked.emit(sortType);
   }
 
@@ -53,7 +60,8 @@ export class HeaderComponent implements OnInit {
     this.filterClicked.emit(filterCriteria);
   }
 
-  loginClick() {
-    console.log('login clicked');
+  logoutClick(): void {
+    this.userService.logoutUser();
+    this.router.navigateByUrl('auth');
   }
 }

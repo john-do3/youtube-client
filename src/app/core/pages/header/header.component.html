@@ -3,7 +3,7 @@
     <mat-toolbar-row>
       <span class="spacer"></span>
       <div class="logo"></div>
-      <div style="width: 10px"></div>
+      <div class="hspacer5"></div>
 
       <div style="font-size: 12px">
         <mat-form-field [style.width.px]="400">
@@ -16,18 +16,19 @@
         </mat-form-field>
       </div>
       <div class="search-button" (click)="searchClick()"></div>
-      <div style="width: 10px"></div>
+      <div class="hspacer10"></div>
 
       <div
         class="search-settings-button"
         [ngClass]="{ hiddenCls: !isSearchClicked }"
         (click)="searchSettingsClick()"
       ></div>
-      <div style="width: 50px"></div>
+      <div class="hspacer50"></div>
 
-      <label>Your name</label>
-      <div style="width: 5px"></div>
-      <div class="login-button" (click)="loginClick()"></div>
+      <label>{{userName}}</label>
+      <div class="hspacer5"></div>
+      <div class="login-button"></div>
+      <div *ngIf="isLoggedIn" class="img-button" (click)="logoutClick()">Logout</div>
       <span class="spacer"></span>
     </mat-toolbar-row>
 

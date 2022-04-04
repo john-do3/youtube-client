@@ -13,6 +13,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from './services/auth.service';
 
 const routes: Routes = [
     { path: '', component: LoginComponent }
@@ -25,19 +26,21 @@ const routes: Routes = [
     ],
     imports: [
         CommonModule,
+        FormsModule,
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
         MatInputModule,
         MatCardModule,
         MatGridListModule,
+        
         RouterModule.forChild(routes)
     ],
     exports: [
         LoginComponent,
         RegisterComponent
     ],
-    providers: [],
+    providers: [AuthService],
     bootstrap: [],
 })
 export class AuthModule { }

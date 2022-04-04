@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from './pages/header/header.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { LoggedInGuard } from './guards/logged-in.guard';
-import { LoginService } from './services/login.service';
+import { UserService } from './services/user.service';
 
 
 @NgModule({
@@ -35,7 +35,7 @@ import { LoginService } from './services/login.service';
         HeaderComponent,
         PageNotFoundComponent
     ],
-    providers: [LoggedInGuard, LoginService],
+    providers: [LoggedInGuard, UserService],
     bootstrap: [],
 })
 export class CoreModule { }
