@@ -10,7 +10,7 @@ import { LoggedInGuard } from './core/guards/logged-in.guard';
 
 const routes: Routes = [
   { path: 'auth',  loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  { path: 'youtube', canActivate: [LoggedInGuard], loadChildren: () => import('./youtube/youtube.module').then(m => m.YoutubeModule) },
+  { path: 'main', canActivate: [LoggedInGuard], loadChildren: () => import('./youtube/youtube.module').then(m => m.YoutubeModule) },
   { path: '', redirectTo: 'auth', pathMatch: "full" },
   { path: '**', component: PageNotFoundComponent },
 ];

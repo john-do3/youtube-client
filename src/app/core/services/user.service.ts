@@ -6,16 +6,13 @@ export class UserService {
     private tokenKey = 'authToken';
 
     checkIsLoggedIn(): boolean {
-        let result = false;
-
-        let token = localStorage.getItem('authToken');
-        result = token ? true : false;
-
-        return result;
+        
+        let token = localStorage.getItem(this.tokenKey);
+        return token ? true : false;
     }
 
     getUserName(): string | null {
-        return localStorage.getItem('userName');
+        return localStorage.getItem(this.userNameKey);
     }
 
     loginUser(userName: string) {
@@ -24,8 +21,8 @@ export class UserService {
     }
 
     logoutUser(): void {
-        localStorage.setItem(this.userNameKey, '');
-        localStorage.setItem(this.tokenKey, '');
+        localStorage.removeItem(this.userNameKey);
+        localStorage.removeItem(this.tokenKey);
     }
 
 }

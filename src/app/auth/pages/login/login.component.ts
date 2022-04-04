@@ -15,11 +15,11 @@ export class LoginComponent {
 
   constructor(private userService: UserService, private router: Router) {
     if (this.userService.checkIsLoggedIn())
-      this.router.navigateByUrl('youtube');
+      this.router.navigateByUrl('main');
   }
 
   onSubmit(): void {
     this.userService.loginUser(this.username);
-    this.router.navigateByUrl('/youtube');
+    this.router.navigateByUrl('main');
   }
 }
