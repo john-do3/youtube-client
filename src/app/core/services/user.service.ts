@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
 export class UserService {
     private userNameKey = 'userName';
     private tokenKey = 'authToken';
-    
+
     checkIsLoggedIn(): boolean {
         let result = false;
 
@@ -16,6 +16,11 @@ export class UserService {
 
     getUserName(): string | null {
         return localStorage.getItem('userName');
+    }
+
+    loginUser(userName: string) {
+        localStorage.setItem(this.userNameKey, userName);
+        localStorage.setItem(this.tokenKey, 'faketoken');
     }
 
     logoutUser(): void {

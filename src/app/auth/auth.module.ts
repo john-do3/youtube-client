@@ -13,7 +13,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { AuthService } from './services/auth.service';
+import { UserService } from '../core/services/user.service';
 
 const routes: Routes = [
     { path: '', component: LoginComponent }
@@ -40,7 +40,7 @@ const routes: Routes = [
         LoginComponent,
         RegisterComponent
     ],
-    providers: [AuthService],
+    providers: [UserService],
     bootstrap: [],
 })
 export class AuthModule { }

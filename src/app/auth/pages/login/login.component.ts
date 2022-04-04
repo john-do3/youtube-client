@@ -1,6 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
+import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -13,10 +13,13 @@ export class LoginComponent {
   password!: string;
   loginValid: boolean = true;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router) {
+    if (this.userService.checkIsLoggedIn())
+      this.router.navigateByUrl('youtube');
+  }
 
   onSubmit(): void {
-    this.authService.loginUser(this.username);
+    this.userService.loginUser(this.username);
     this.router.navigateByUrl('/youtube');
   }
 }
