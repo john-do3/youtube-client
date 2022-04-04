@@ -1,8 +1,8 @@
 import {
   Component, EventEmitter, OnInit, Output,
 } from '@angular/core';
-import { IFilter } from 'src/app/models/filter.model';
-import { ISortModel } from 'src/app/models/sort.model';
+import { IFilter } from 'src/app/youtube/models/filter.model';
+import { ISortModel } from '../../models/sort.model';
 
 @Component({
   selector: 'app-search-settings',

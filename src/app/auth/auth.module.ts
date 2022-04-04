@@ -11,6 +11,12 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { Routes, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+
+const routes: Routes = [
+    { path: '', component: LoginComponent }
+];
 
 @NgModule({
     declarations: [
@@ -18,15 +24,14 @@ import { RegisterComponent } from './pages/register/register.component';
         RegisterComponent
     ],
     imports: [
-        BrowserModule,
-        FormsModule,
-        BrowserAnimationsModule,
+        CommonModule,
         MatToolbarModule,
         MatIconModule,
         MatButtonModule,
         MatInputModule,
         MatCardModule,
         MatGridListModule,
+        RouterModule.forChild(routes)
     ],
     exports: [
         LoginComponent,

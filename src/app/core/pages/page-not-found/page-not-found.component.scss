@@ -1,0 +1,17 @@
+.container {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.child {
+    width:350px;
+}
+
+.p404 {
+ background-image:  url('./img/404.png');
+ width:50px;
+ height: 55px;
+}

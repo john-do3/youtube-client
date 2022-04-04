@@ -1,13 +1,18 @@
 <div class="main">
   <app-header
     title="{{ title }}"
+  ></app-header>
+  <!--app-search-results>
     (searchClicked)="onSearchClicked()"
     (sortClicked)="onSortClicked($event)"
-    (filterClicked)="onFilterClicked($event)"
-  ></app-header>
-  <app-search-results #searchResults
-    [ngClass]="{ hiddenCls: !isSearchResultsVisible }"
-    [filterCriteria]="filterCriteria"
-  ></app-search-results>
-  <!--app-search-results></app-search-results-->
+    (filterClicked)="onFilterClicked($event)"  
+  
+  </app-search-results-->
+
+  <!--app-header
+    title="{{ title }}"
+  ></app-header-->
+
 </div>
+
+<router-outlet></router-outlet>

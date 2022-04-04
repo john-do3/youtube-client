@@ -2,8 +2,8 @@ import {
   Component, Input, OnInit, Output, EventEmitter, ViewChild,
 } from '@angular/core';
 import { MatInput } from '@angular/material/input';
-import { IFilter } from 'src/app/models/filter.model';
-import { ISortModel } from 'src/app/models/sort.model';
+import { IFilter } from 'src/app/youtube/models/filter.model';
+import { ISortModel } from 'src/app/youtube/models/sort.model';
 
 @Component({
   selector: 'app-header',

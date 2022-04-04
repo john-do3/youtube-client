@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { IFilter } from './models/filter.model';
-import { ISortModel } from './models/sort.model';
-import { SearchResultsComponent } from './search/search-results/search-results.component';
+import { IFilter } from './youtube/models/filter.model';
+import { ISortModel } from './youtube/models/sort.model';
+import { SearchResultsComponent } from './youtube/pages/search-results/search-results.component';
 
 @Component({
   selector: 'app-root',
@@ -11,14 +11,10 @@ import { SearchResultsComponent } from './search/search-results/search-results.c
 export class AppComponent {
   title = 'youtube-client';
 
-  filterCriteria!: IFilter;
-
-  isSearchResultsVisible: boolean = false;
-
   @ViewChild('searchResults')
     searchResults!: SearchResultsComponent;
 
-  onSearchClicked() {
+  /*onSearchClicked() {
     this.isSearchResultsVisible = true;
   }
 
@@ -28,5 +24,5 @@ export class AppComponent {
 
   onFilterClicked(ev: IFilter) {
     this.filterCriteria = ev;
-  }
+  }*/
 }
