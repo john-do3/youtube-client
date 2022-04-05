@@ -20,7 +20,7 @@ export class LoggedInGuard implements CanActivate {
     else
     {
       console.log('access denied');
-      this.router.navigateByUrl('/auth');
+      this.router.navigateByUrl('auth');
       return false;
     }
   }
