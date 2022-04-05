@@ -5,10 +5,8 @@
   width: 264px;
   height: 327px;
   background-color: #e5e5e5;
-  box-shadow: 4px 3px 3px -1px rgba(34, 60, 80, 0.2);
-  border-radius: 5px;
-  margin-right: 20px;
-  margin-top: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
 }
 
 .thumbnail {
@@ -38,46 +36,6 @@
   width: calc(90% + 32px);
 }
 
-.img-icon {
-  @extend .img !optional;
-  margin-left: 12px;
-  margin-right: 5px;
-}
-
-.img-icon-viewed {
-  @extend .img-icon;
-  background-image: url(./img/viewed.png);
-  width: 20px;
-  height: 13px;
-}
-
-.img-icon-liked {
-  @extend .img-icon;
-  background-image: url(./img/liked.png);
-  width: 15px;
-  height: 13px;
-}
-
-.img-icon-disliked {
-  @extend .img-icon;
-  background-image: url(./img/disliked.png);
-  width: 15px;
-  height: 13px;
-}
-
-.img-icon-commented {
-  @extend .img-icon;
-  background-image: url(./img/commented.png);
-  width: 15px;
-  height: 13px;
-}
-
 .card-title {
   text-align: center;
-}
-
-.stats {
-  font-size: 10px;
-  font-weight: 500;
-  align-items: center;
 }

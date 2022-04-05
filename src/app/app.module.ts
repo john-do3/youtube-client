@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
 import { LoggedInGuard } from './core/guards/logged-in.guard';
+import { StatsComponent } from './shared/components/stats/stats.component';
 
 const routes: Routes = [
   { path: 'auth',  loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
@@ -17,12 +18,12 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent    
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    CoreModule,
+    CoreModule,    
     RouterModule.forRoot(routes)
   ],
   exports: [RouterModule],

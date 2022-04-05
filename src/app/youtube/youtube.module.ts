@@ -6,13 +6,13 @@ import { SearchItemComponent } from './pages/search-item/search-item.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { SearchSettingsComponent } from './pages/search-settings/search-settings.component';
 import { FilterPipe } from './pipes/filter.pipe';
-import { CardStyleDirective } from './directives/card-style.directive';
 import { DetailedInformationComponent } from './pages/detailed-information/detailed-information.component';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   { path: '', redirectTo:'main', pathMatch: 'full' },
   { path: 'main', component: MainComponent },
-  { path: 'detailed', component: DetailedInformationComponent}
+  { path: 'detailed/:id', component: DetailedInformationComponent}
 ];
 
 @NgModule({
@@ -22,11 +22,11 @@ const routes: Routes = [
     SearchResultsComponent,
     SearchSettingsComponent,
     FilterPipe,
-    CardStyleDirective,
     DetailedInformationComponent
   ],
   imports: [
-    CommonModule,
+    CommonModule,    
+    SharedModule,
     RouterModule.forChild(routes)
   ],
   exports: [

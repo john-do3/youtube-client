@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { IFilter } from 'src/app/youtube/models/filter.model';
-import { ISearchItem } from '../../models/search-item.model';
+import { ISearchItem } from '../../../shared/models/search-item.model';
 import { ISortModel } from '../../models/sort.model';
 import { ISearchResponse } from '../../models/search-response.model';
-import { searchData } from './search-data';
+import { searchData } from '../../models/search-data';
 
 @Component({
   selector: 'app-search-results',

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { IFilter } from '../models/filter.model';
-import { ISearchItem } from '../models/search-item.model';
+import { ISearchItem } from '../../shared/models/search-item.model';
 
 @Pipe({
   name: 'filter',

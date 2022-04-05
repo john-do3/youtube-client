@@ -6,13 +6,10 @@ import { IFilter } from '../../models/filter.model';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent  {
   filterCriteria!: IFilter;
   isSearchResultsVisible: boolean = false;
   
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
