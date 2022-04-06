@@ -23,8 +23,6 @@ export class HeaderComponent {
 
   @Input() isLoggedIn: boolean = false;
 
-  @Input() title: string = '';
-
   constructor(
     private userService: UserService, 
     private router: Router,
@@ -38,6 +36,7 @@ export class HeaderComponent {
 
   searchClick() {
     if (this.searchInput.value) {
+      this.router.navigateByUrl('youtube/main');
       this.headerService.searchClick();
       this.isSearchClicked = true;
     }

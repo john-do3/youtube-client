@@ -9,5 +9,5 @@ import { SearchResultsComponent } from './youtube/pages/search-results/search-re
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'youtube-client';
+  
 }
