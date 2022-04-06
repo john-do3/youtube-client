@@ -14,32 +14,30 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { LoggedInGuard } from './guards/logged-in.guard';
 import { UserService } from './services/user.service';
 import { SearchSettingsComponent } from './pages/search-settings/search-settings.component';
-import { HeaderService } from './services/header.service';
-
 
 @NgModule({
-    declarations: [
-        HeaderComponent,
-        PageNotFoundComponent,
-        SearchSettingsComponent,
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        BrowserAnimationsModule,
-        MatToolbarModule,
-        MatIconModule,
-        MatButtonModule,
-        MatInputModule,
-        MatCardModule,
-        MatGridListModule,
-    ],
-    exports: [
-        HeaderComponent,
-        PageNotFoundComponent,
-        SearchSettingsComponent
-    ],
-    providers: [LoggedInGuard, UserService],
-    bootstrap: [],
+  declarations: [
+    HeaderComponent,
+    PageNotFoundComponent,
+    SearchSettingsComponent,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    MatCardModule,
+    MatGridListModule,
+  ],
+  exports: [
+    HeaderComponent,
+    PageNotFoundComponent,
+    SearchSettingsComponent,
+  ],
+  providers: [LoggedInGuard, UserService],
+  bootstrap: [],
 })
 export class CoreModule { }

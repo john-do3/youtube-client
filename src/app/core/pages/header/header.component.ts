@@ -1,9 +1,6 @@
-import {
-  Component, Input, OnInit, Output, EventEmitter, ViewChild, OnChanges,
-} from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
-import { IFilter } from 'src/app/core/models/filter.model';
 import { ISortModel } from 'src/app/youtube/models/sort.model';
 import { HeaderService } from '../../services/header.service';
 import { UserService } from '../../services/user.service';
@@ -15,24 +12,26 @@ import { UserService } from '../../services/user.service';
 })
 export class HeaderComponent {
   isSearchSettingsVisible: boolean = false;
+
   isSearchClicked: boolean = false;
 
   userName!: string | null;
+
   @ViewChild('searchInput')
-  searchInput!: MatInput;
+    searchInput!: MatInput;
 
   @Input() isLoggedIn: boolean = false;
 
   constructor(
-    private userService: UserService, 
+    private userService: UserService,
     private router: Router,
-    private headerService: HeaderService
-    ) {
-    router.events.subscribe((val) =>{
+    private headerService: HeaderService,
+  ) {
+    router.events.subscribe(() => {
       this.userName = this.userService.getUserName();
       this.isLoggedIn = this.userService.checkIsLoggedIn();
-    })
-   }
+    });
+  }
 
   searchClick() {
     if (this.searchInput.value) {

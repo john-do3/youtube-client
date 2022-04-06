@@ -1,7 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { IFilter } from './core/models/filter.model';
-import { ISortModel } from './youtube/models/sort.model';
-import { SearchResultsComponent } from './youtube/pages/search-results/search-results.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +6,5 @@ import { SearchResultsComponent } from './youtube/pages/search-results/search-re
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  
+
 }

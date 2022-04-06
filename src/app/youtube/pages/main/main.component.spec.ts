@@ -8,9 +8,9 @@ describe('YoutubeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ MainComponent ]
+      declarations: [MainComponent],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

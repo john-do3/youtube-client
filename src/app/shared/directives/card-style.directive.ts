@@ -1,5 +1,4 @@
 import {
-  AfterViewInit,
   Directive, ElementRef, Input, OnInit, Renderer2,
 } from '@angular/core';
 import * as moment from 'moment';
@@ -10,10 +9,9 @@ import * as moment from 'moment';
 export class CardStyleDirective implements OnInit {
   @Input() date!: string;
 
-  constructor(private el: ElementRef, private renderer2: Renderer2) {  }
+  constructor(private el: ElementRef, private renderer2: Renderer2) { }
 
-  ngOnInit(): void {    
-  
+  ngOnInit(): void {
     // If a publication date is less than a month, set border background to green
     // If a publication date is less than 7 days, set border background to blue
     // If a publication date is more than 6 months, set border background to red

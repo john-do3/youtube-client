@@ -7,12 +7,11 @@ import { SearchResultsComponent } from './pages/search-results/search-results.co
 import { FilterPipe } from './pipes/filter.pipe';
 import { DetailedInformationComponent } from './pages/detailed-information/detailed-information.component';
 import { SharedModule } from '../shared/shared.module';
-import { HeaderService } from '../core/services/header.service';
 
 const routes: Routes = [
-  { path: '', redirectTo:'main', pathMatch: 'full' },
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
   { path: 'main', component: MainComponent },
-  { path: 'detailed/:id', component: DetailedInformationComponent}
+  { path: 'detailed/:id', component: DetailedInformationComponent },
 ];
 
 @NgModule({
@@ -21,17 +20,17 @@ const routes: Routes = [
     SearchItemComponent,
     SearchResultsComponent,
     FilterPipe,
-    DetailedInformationComponent
+    DetailedInformationComponent,
   ],
   imports: [
-    CommonModule,    
+    CommonModule,
     SharedModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  providers:[],
+  providers: [],
   exports: [
     SearchItemComponent,
     SearchResultsComponent,
-  ]
+  ],
 })
 export class YoutubeModule { }

@@ -4,17 +4,17 @@ import { CardStyleDirective } from './directives/card-style.directive';
 import { SlicerPipe } from './pipes/slicer.pipe';
 
 @NgModule({
-    declarations: [
-        StatsComponent,
-        SlicerPipe,
-        CardStyleDirective,
-    ],
-    imports: [
-    ],
-    exports: [
-        StatsComponent,   
-        SlicerPipe,
-        CardStyleDirective
-    ]
+  declarations: [
+    StatsComponent,
+    SlicerPipe,
+    CardStyleDirective,
+  ],
+  imports: [
+  ],
+  exports: [
+    StatsComponent,
+    SlicerPipe,
+    CardStyleDirective,
+  ],
 })
 export class SharedModule { }

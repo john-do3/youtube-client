@@ -1,8 +1,4 @@
-import {
-  Component, EventEmitter, OnInit, Output,
-} from '@angular/core';
-import { IFilter } from 'src/app/core/models/filter.model';
-import { ISortModel } from '../../../youtube/models/sort.model';
+import { Component } from '@angular/core';
 import { HeaderService } from '../../services/header.service';
 
 @Component({
@@ -23,7 +19,7 @@ export class SearchSettingsComponent {
     views: false,
   };
 
-  constructor(private headerService: HeaderService) { 
+  constructor(private headerService: HeaderService) {
 
   }
 

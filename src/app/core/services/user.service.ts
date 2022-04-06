@@ -1,28 +1,27 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UserService {
-    private userNameKey = 'userName';
-    private tokenKey = 'authToken';
+  private userNameKey = 'userName';
 
-    checkIsLoggedIn(): boolean {
-        
-        let token = localStorage.getItem(this.tokenKey);
-        return token ? true : false;
-    }
+  private tokenKey = 'authToken';
 
-    getUserName(): string | null {
-        return localStorage.getItem(this.userNameKey);
-    }
+  checkIsLoggedIn(): boolean {
+    const token = localStorage.getItem(this.tokenKey);
+    return !!token;
+  }
 
-    loginUser(userName: string) {
-        localStorage.setItem(this.userNameKey, userName);
-        localStorage.setItem(this.tokenKey, 'faketoken');
-    }
+  getUserName(): string | null {
+    return localStorage.getItem(this.userNameKey);
+  }
 
-    logoutUser(): void {
-        localStorage.removeItem(this.userNameKey);
-        localStorage.removeItem(this.tokenKey);
-    }
+  loginUser(userName: string) {
+    localStorage.setItem(this.userNameKey, userName);
+    localStorage.setItem(this.tokenKey, 'faketoken');
+  }
 
+  logoutUser(): void {
+    localStorage.removeItem(this.userNameKey);
+    localStorage.removeItem(this.tokenKey);
+  }
 }

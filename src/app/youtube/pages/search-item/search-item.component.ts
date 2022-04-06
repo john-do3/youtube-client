@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ISearchItem } from 'src/app/shared/models/search-item.model';
 
@@ -12,7 +12,7 @@ export class SearchItemComponent {
 
   constructor(private router: Router) { }
 
-  onMore(): void{
-    this.router.navigateByUrl(`youtube/detailed/${this.data.id}`);    
+  onMore(): void {
+    this.router.navigateByUrl(`youtube/detailed/${this.data.id}`);
   }
 }
