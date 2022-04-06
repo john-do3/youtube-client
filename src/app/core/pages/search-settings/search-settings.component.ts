@@ -1,15 +1,16 @@
 import {
   Component, EventEmitter, OnInit, Output,
 } from '@angular/core';
-import { IFilter } from 'src/app/youtube/models/filter.model';
-import { ISortModel } from '../../models/sort.model';
+import { IFilter } from 'src/app/core/models/filter.model';
+import { ISortModel } from '../../../youtube/models/sort.model';
+import { HeaderService } from '../../services/header.service';
 
 @Component({
   selector: 'app-search-settings',
   templateUrl: './search-settings.component.html',
   styleUrls: ['./search-settings.component.scss'],
 })
-export class SearchSettingsComponent implements OnInit {
+export class SearchSettingsComponent {
   // sort types for date and views / is ascending
   dateTitle: string = 'date';
 
@@ -22,15 +23,8 @@ export class SearchSettingsComponent implements OnInit {
     views: false,
   };
 
-  @Output()
-    sortClicked: EventEmitter<ISortModel> = new EventEmitter<ISortModel>();
+  constructor(private headerService: HeaderService) { 
 
-  @Output()
-    filterClicked: EventEmitter<IFilter> = new EventEmitter<IFilter>();
-
-  constructor() { }
-
-  ngOnInit(): void {
   }
 
   onSort(sortType: string): void {
@@ -42,13 +36,13 @@ export class SearchSettingsComponent implements OnInit {
 
     if (sortType === 'date') { this.dateTitle = `${this.dateTitle} ${directionSign}`; } else { this.viewsTitle = `${this.dateTitle} ${directionSign}`; }
 
-    this.sortClicked.emit({ type: sortType, isAscending: currentDirection });
+    this.headerService.sortClick({ type: sortType, isAscending: currentDirection });
 
     // swap current direction asc/desc
     this.sortTypes[sortType] = currentDirection;
   }
 
   onFilter(): void {
-    this.filterClicked.emit({ title: this.filterCriteria });
+    this.headerService.filterClick({ title: this.filterCriteria });
   }
 }

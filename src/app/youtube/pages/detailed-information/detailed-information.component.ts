@@ -22,7 +22,7 @@ export class DetailedInformationComponent {
   }
 
   onBack(): void{
-    history.back();
+    this.router.navigateByUrl('youtube/main')
   }
 
 }

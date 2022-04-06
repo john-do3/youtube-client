@@ -7,7 +7,8 @@ import { CoreModule } from './core/core.module';
 import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
 import { LoggedInGuard } from './core/guards/logged-in.guard';
-import { StatsComponent } from './shared/components/stats/stats.component';
+import { SharedModule } from './shared/shared.module';
+import { HeaderService } from './core/services/header.service';
 
 const routes: Routes = [
   { path: 'auth',  loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
@@ -24,10 +25,11 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     CoreModule,    
+    SharedModule,
     RouterModule.forRoot(routes)
   ],
-  exports: [RouterModule],
-  providers: [],
+  exports: [RouterModule, CoreModule],
+  providers: [HeaderService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

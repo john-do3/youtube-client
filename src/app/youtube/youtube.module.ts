@@ -4,10 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './pages/main/main.component';
 import { SearchItemComponent } from './pages/search-item/search-item.component';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
-import { SearchSettingsComponent } from './pages/search-settings/search-settings.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { DetailedInformationComponent } from './pages/detailed-information/detailed-information.component';
 import { SharedModule } from '../shared/shared.module';
+import { HeaderService } from '../core/services/header.service';
 
 const routes: Routes = [
   { path: '', redirectTo:'main', pathMatch: 'full' },
@@ -20,7 +20,6 @@ const routes: Routes = [
     MainComponent,
     SearchItemComponent,
     SearchResultsComponent,
-    SearchSettingsComponent,
     FilterPipe,
     DetailedInformationComponent
   ],
@@ -29,10 +28,10 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes)
   ],
+  providers:[],
   exports: [
     SearchItemComponent,
     SearchResultsComponent,
-    SearchSettingsComponent,
   ]
 })
 export class YoutubeModule { }

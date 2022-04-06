@@ -3,8 +3,9 @@ import {
 } from '@angular/core';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
-import { IFilter } from 'src/app/youtube/models/filter.model';
+import { IFilter } from 'src/app/core/models/filter.model';
 import { ISortModel } from 'src/app/youtube/models/sort.model';
+import { HeaderService } from '../../services/header.service';
 import { UserService } from '../../services/user.service';
 
 @Component({
@@ -14,7 +15,6 @@ import { UserService } from '../../services/user.service';
 })
 export class HeaderComponent {
   isSearchSettingsVisible: boolean = false;
-
   isSearchClicked: boolean = false;
 
   userName!: string | null;
@@ -25,16 +25,11 @@ export class HeaderComponent {
 
   @Input() title: string = '';
 
-  @Output()
-  searchClicked: EventEmitter<Object> = new EventEmitter<Object>();
-
-  @Output()
-  sortClicked: EventEmitter<ISortModel> = new EventEmitter<ISortModel>();
-
-  @Output()
-  filterClicked: EventEmitter<IFilter> = new EventEmitter<IFilter>();
-
-  constructor(private userService: UserService, private router: Router) {
+  constructor(
+    private userService: UserService, 
+    private router: Router,
+    private headerService: HeaderService
+    ) {
     router.events.subscribe((val) =>{
       this.userName = this.userService.getUserName();
       this.isLoggedIn = this.userService.checkIsLoggedIn();
@@ -43,7 +38,7 @@ export class HeaderComponent {
 
   searchClick() {
     if (this.searchInput.value) {
-      this.searchClicked.emit();
+      this.headerService.searchClick();
       this.isSearchClicked = true;
     }
   }
@@ -53,11 +48,7 @@ export class HeaderComponent {
   }
 
   onSortClicked(sortType: ISortModel) {
-    this.sortClicked.emit(sortType);
-  }
-
-  onFilterClicked(filterCriteria: IFilter) {
-    this.filterClicked.emit(filterCriteria);
+    this.headerService.sortClick(sortType);
   }
 
   logoutClick(): void {

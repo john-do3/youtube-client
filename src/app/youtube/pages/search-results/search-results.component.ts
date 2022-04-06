@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
-import { IFilter } from 'src/app/youtube/models/filter.model';
+import { IFilter } from '../../../core/models/filter.model';
 import { ISearchItem } from '../../../shared/models/search-item.model';
 import { ISortModel } from '../../models/sort.model';
 import { ISearchResponse } from '../../models/search-response.model';
 import { searchData } from '../../models/search-data';
+import { HeaderService } from 'src/app/core/services/header.service';
 
 @Component({
   selector: 'app-search-results',
@@ -17,7 +18,16 @@ export class SearchResultsComponent implements OnInit {
   @Input()
     filterCriteria!: IFilter;
 
-  constructor() { }
+  constructor(private headerService: HeaderService) { 
+    headerService.SortClicked.subscribe((model) => {
+      this.sortData(model);
+    })
+
+    headerService.FilterClicked.subscribe((criteria) => {
+      this.filterCriteria = criteria;
+    })
+
+  }
 
   ngOnInit(): void {
   }
