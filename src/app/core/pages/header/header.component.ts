@@ -33,7 +33,7 @@ export class HeaderComponent {
     });
   }
 
-  searchClick() {
+  searchClick(): void {
     if (this.searchInput.value) {
       this.router.navigateByUrl('youtube/main');
       this.headerService.searchClick();
@@ -41,11 +41,11 @@ export class HeaderComponent {
     }
   }
 
-  searchSettingsClick() {
+  searchSettingsClick(): void {
     this.isSearchSettingsVisible = !this.isSearchSettingsVisible;
   }
 
-  onSortClicked(sortType: ISortModel) {
+  onSortClicked(sortType: ISortModel): void {
     this.headerService.sortClick(sortType);
   }
 
