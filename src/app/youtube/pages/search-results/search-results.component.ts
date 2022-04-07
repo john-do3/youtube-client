@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import * as moment from 'moment';
 import { HeaderService } from 'src/app/core/services/header.service';
 import { IFilter } from '../../../core/models/filter.model';
@@ -12,7 +12,7 @@ import { searchData } from '../../models/search-data';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultsComponent {
   data: ISearchResponse = searchData;
 
   @Input()
@@ -26,9 +26,6 @@ export class SearchResultsComponent implements OnInit {
     headerService.FilterClicked.subscribe((criteria) => {
       this.filterCriteria = criteria;
     });
-  }
-
-  ngOnInit(): void {
   }
 
   sortData(sortType: ISortModel) {

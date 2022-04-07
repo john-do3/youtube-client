@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ISearchItem } from '../../models/search-item.model';
 
 @Component({
@@ -6,11 +6,6 @@ import { ISearchItem } from '../../models/search-item.model';
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.scss'],
 })
-export class StatsComponent implements OnInit {
+export class StatsComponent {
   @Input() data!: ISearchItem;
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 }
