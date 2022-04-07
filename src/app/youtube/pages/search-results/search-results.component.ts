@@ -28,7 +28,7 @@ export class SearchResultsComponent {
     });
   }
 
-  sortData(sortType: ISortModel) {
+  sortData(sortType: ISortModel): void {
     this.data.items.sort((a: ISearchItem, b: ISearchItem) => {
       let aParam = null;
       let bParam = null;

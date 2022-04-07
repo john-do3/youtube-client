@@ -15,7 +15,7 @@ export class UserService {
     return localStorage.getItem(this.userNameKey);
   }
 
-  loginUser(userName: string) {
+  loginUser(userName: string): void {
     localStorage.setItem(this.userNameKey, userName);
     localStorage.setItem(this.tokenKey, 'faketoken');
   }
