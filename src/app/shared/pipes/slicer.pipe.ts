@@ -4,8 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'slicer',
 })
 export class SlicerPipe implements PipeTransform {
-  transform(text: string, maxLength: number): any {
-    if (!text) return '';
+  transform(text: string = '', maxLength: number): any {
 
     return text.length > maxLength
       ? (`${text.slice(0, maxLength)}...`)

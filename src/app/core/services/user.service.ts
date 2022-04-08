@@ -11,8 +11,9 @@ export class UserService {
     return !!token;
   }
 
-  getUserName(): string | null {
-    return localStorage.getItem(this.userNameKey);
+  getUserName(): string {
+    let result = localStorage.getItem(this.userNameKey);
+    return result ? result : '';
   }
 
   loginUser(userName: string): void {
