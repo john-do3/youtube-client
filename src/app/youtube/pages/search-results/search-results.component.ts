@@ -1,6 +1,9 @@
-import { Component, Input } from '@angular/core';
+import {
+  Component, Input, OnDestroy, OnInit,
+} from '@angular/core';
 import * as moment from 'moment';
 import { HeaderService } from 'src/app/core/services/header.service';
+import { Subscription } from 'rxjs';
 import { IFilter } from '../../../core/models/filter.model';
 import { ISearchItem } from '../../../shared/models/search-item.model';
 import { ISortModel } from '../../models/sort.model';
@@ -12,20 +15,36 @@ import { searchData } from '../../models/search-data';
   templateUrl: './search-results.component.html',
   styleUrls: ['./search-results.component.scss'],
 })
-export class SearchResultsComponent {
+export class SearchResultsComponent implements OnInit, OnDestroy {
   data: ISearchResponse = searchData;
+
+  private subscriptions = new Subscription();
 
   @Input()
     filterCriteria!: IFilter;
 
   constructor(private headerService: HeaderService) {
-    headerService.SortClicked.subscribe((model) => {
-      this.sortData(model);
-    });
+  }
 
-    headerService.FilterClicked.subscribe((criteria) => {
-      this.filterCriteria = criteria;
-    });
+  ngOnInit(): void {
+    // subscriptions may be grouped together through the add() method,
+    // which will attach a child Subscription to the current Subscription.
+    // When a Subscription is unsubscribed, all its children(and its grandchildren) will be unsubscribed as well.
+    this.subscriptions.add(
+      this.headerService.SortClicked.subscribe((model) => {
+        this.sortData(model);
+      }),
+    );
+
+    this.subscriptions.add(
+      this.headerService.FilterClicked.subscribe((criteria) => {
+        this.filterCriteria = criteria;
+      }),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   sortData(sortType: ISortModel): void {
