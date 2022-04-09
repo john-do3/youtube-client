@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { searchData } from '../../models/search-data';
 import { ISearchItem } from '../../../shared/models/search-item.model';
+import { youtubeRoute } from 'src/app/project.constants';
 
 @Component({
   selector: 'app-detailed-information',
@@ -22,6 +23,6 @@ export class DetailedInformationComponent {
   }
 
   onBack(): void {
-    this.router.navigateByUrl('youtube/main');
+    this.router.navigateByUrl(`${youtubeRoute}/main`);
   }
 }

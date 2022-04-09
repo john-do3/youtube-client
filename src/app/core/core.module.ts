@@ -37,7 +37,7 @@ import { SearchSettingsComponent } from './pages/search-settings/search-settings
     PageNotFoundComponent,
     SearchSettingsComponent,
   ],
-  providers: [LoggedInGuard, UserService],
+  providers: [LoggedInGuard],
   bootstrap: [],
 })
 export class CoreModule { }

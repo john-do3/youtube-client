@@ -9,11 +9,13 @@ import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-foun
 import { LoggedInGuard } from './core/guards/logged-in.guard';
 import { SharedModule } from './shared/shared.module';
 import { HeaderService } from './core/services/header.service';
+import { UserService } from './core/services/user.service';
+import { loginRoute, youtubeRoute } from './project.constants';
 
 const routes: Routes = [
-  { path: 'auth', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
-  { path: 'youtube', canActivate: [LoggedInGuard], loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule) },
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: loginRoute, loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
+  { path: youtubeRoute, canActivate: [LoggedInGuard], loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule) },
+  { path: '', redirectTo: loginRoute, pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];
 
@@ -29,7 +31,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
   ],
   exports: [RouterModule, CoreModule],
-  providers: [HeaderService],
+  providers: [HeaderService, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

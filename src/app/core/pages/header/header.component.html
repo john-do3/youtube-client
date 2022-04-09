@@ -24,12 +24,16 @@
       ></div>
       <div class="hspacer50"></div>
 
-      <label>{{ userName }}</label>
-      <div class="hspacer5"></div>
-      <div class="login-button"></div>
+      <label *ngIf="isLoggedIn">[{{ userName }}]</label>
+      <div class="hspacer5"></div>      
+      <div *ngIf="!isLoggedIn" class="img-button" (click)="loginClick()">
+        Login
+      </div>
       <div *ngIf="isLoggedIn" class="img-button" (click)="logoutClick()">
         Logout
       </div>
+      <div class="hspacer5"></div>      
+      <div class="login-button"></div>
       <span class="spacer"></span>
     </mat-toolbar-row>
 
