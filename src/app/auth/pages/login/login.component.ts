@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
+import { youtubeRoute } from 'src/app/project.constants';
 
 @Component({
   selector: 'app-login',
@@ -20,11 +21,11 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.userService.checkIsLoggedIn()) this.router.navigateByUrl('youtube');
+    if (this.userService.checkIsLoggedIn()) this.router.navigateByUrl(youtubeRoute);
   }
 
   onSubmit(): void {
     this.userService.loginUser(this.username);
-    this.router.navigateByUrl('youtube');
+    this.router.navigateByUrl(youtubeRoute);
   }
 }
