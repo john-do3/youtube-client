@@ -2,55 +2,34 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { MatCardModule } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { FormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { SearchItemComponent } from './search/search-item/search-item.component';
-import { SearchResultsComponent } from './search/search-results/search-results.component';
-import { SearchSettingsComponent } from './search/search-settings/search-settings.component';
-import { HeaderComponent } from './header/header/header.component';
-import { CardOneComponent } from './cards/card-one/card-one.component';
-import { CardTwoComponent } from './cards/card-two/card-two.component';
-import { VideoCardComponent } from './cards/video-card/video-card.component';
-import { CreateCardComponent } from './cards/create-card/create-card.component';
-import { LoginComponent } from './admin/login/login.component';
-import { RegisterComponent } from './admin/register/register.component';
-import { FilterPipe } from './pipes/filter.pipe';
-import { CardStyleDirective } from './search/search-item/card-style.directive';
+import { CoreModule } from './core/core.module';
+import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
+import { LoggedInGuard } from './core/guards/logged-in.guard';
+import { SharedModule } from './shared/shared.module';
+import { HeaderService } from './core/services/header.service';
+
+const routes: Routes = [
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
+  { path: 'youtube', canActivate: [LoggedInGuard], loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule) },
+  { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent },
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchItemComponent,
-    SearchResultsComponent,
-    SearchSettingsComponent,
-    HeaderComponent,
-    CardOneComponent,
-    CardTwoComponent,
-    VideoCardComponent,
-    CreateCardComponent,
-    LoginComponent,
-    RegisterComponent,
-    FilterPipe,
-    CardStyleDirective,
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatInputModule,
-    MatCardModule,
-    MatGridListModule,
+    CoreModule,
+    SharedModule,
+    RouterModule.forRoot(routes),
   ],
-  providers: [],
+  exports: [RouterModule, CoreModule],
+  providers: [HeaderService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

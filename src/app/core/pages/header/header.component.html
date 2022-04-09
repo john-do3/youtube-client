@@ -1,0 +1,42 @@
+<div class="main">
+  <mat-toolbar color="primary" class="youtube-toolbar">
+    <mat-toolbar-row>
+      <span class="spacer"></span>
+      <div class="logo"></div>
+      <div class="hspacer5"></div>
+
+      <mat-form-field [style.width.px]="400">
+        <mat-label>search</mat-label>
+        <input
+          matInput
+          placeholder="What are you want to find out?"
+          #searchInput="matInput"
+        />
+      </mat-form-field>
+
+      <div class="search-button" (click)="searchClick()"></div>
+      <div class="hspacer10"></div>
+
+      <div
+        class="search-settings-button"
+        [ngClass]="{ hiddenCls: !isSearchClicked }"
+        (click)="searchSettingsClick()"
+      ></div>
+      <div class="hspacer50"></div>
+
+      <label>{{ userName }}</label>
+      <div class="hspacer5"></div>
+      <div class="login-button"></div>
+      <div *ngIf="isLoggedIn" class="img-button" (click)="logoutClick()">
+        Logout
+      </div>
+      <span class="spacer"></span>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row [ngClass]="{ hiddenCls: !isSearchSettingsVisible }">
+      <span class="spacer"></span>
+      <app-search-settings></app-search-settings>
+      <span class="spacer"></span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</div>

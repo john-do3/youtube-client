@@ -1,7 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
-import { IFilter } from './models/filter.model';
-import { ISortModel } from './models/sort.model';
-import { SearchResultsComponent } from './search/search-results/search-results.component';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,24 +6,5 @@ import { SearchResultsComponent } from './search/search-results/search-results.c
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'youtube-client';
 
-  filterCriteria!: IFilter;
-
-  isSearchResultsVisible: boolean = false;
-
-  @ViewChild('searchResults')
-    searchResults!: SearchResultsComponent;
-
-  onSearchClicked() {
-    this.isSearchResultsVisible = true;
-  }
-
-  onSortClicked(ev: ISortModel) {
-    this.searchResults.sortData(ev);
-  }
-
-  onFilterClicked(ev: IFilter) {
-    this.filterCriteria = ev;
-  }
 }

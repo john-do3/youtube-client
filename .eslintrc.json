@@ -41,10 +41,7 @@
         "max-len": ["error", { "code": 1500 }],
         "import/prefer-default-export": "off",
         "@typescript-eslint/no-useless-constructor":"off",
-        "class-methods-use-this": "off",
-        "no-empty-function": "off",
-        "@typescript-eslint/no-empty-function": "off",
-        "@angular-eslint/no-empty-lifecycle-method": "off"
+        "class-methods-use-this": "off"
       }
     },
     {

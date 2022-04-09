@@ -1,0 +1,41 @@
+@import "../../../common.scss";
+
+.card_1 {
+  float: left;
+  width: 264px;
+  height: 327px;
+  background-color: #e5e5e5;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.thumbnail {
+  width: 223px;
+  height: 123px;
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+}
+
+.more-button {
+  background-image: url(./img/button_background.png);
+  width: 120px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.more-text {
+  color: white;
+  font-size: 12px;
+}
+
+.mat-card-image {
+  width: calc(90% + 32px);
+}
+
+.card-title {
+  text-align: center;
+}

@@ -1,0 +1,30 @@
+<div class="middle-row">
+  <div class="div-row margin-box">
+    <div class="back-button" (click)="onBack()"></div>
+    <div class="div-row gray box-shadow">
+      <img class="image-big" src="{{ data.snippet.thumbnails.maxres.url }}" />
+      <div class="right-box" appCardStyleDirective [date]="data.snippet.publishedAt">
+        <div class="div-row">
+          <span class="mat-h1">{{ data.snippet.title | slicer: 50 }}</span>
+          <div class="spacer"></div>
+        </div>
+        <div class="mat-h6 gray-text">
+          {{ data.snippet.publishedAt | date }}
+        </div>
+        <div class="hspacer10"></div>
+
+        <div class="mat-h3">Description</div>
+        <div class="mat-h5 gray-text desc-text">
+          {{ data.snippet.description | slicer: 400 }}
+        </div>
+        <div class="spacer"></div>
+        <div class="stats-div">
+            <div class="spacer"></div>
+            <app-stats [data]="data"></app-stats>
+            <div class="spacer"></div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>

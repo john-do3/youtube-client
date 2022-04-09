@@ -1,0 +1,11 @@
+<div class="card_1 box-shadow" appCardStyleDirective [date]="data.snippet.publishedAt">
+  <img class="thumbnail" src="{{ data.snippet.thumbnails.high.url }}" />
+  <app-stats [data]="data"></app-stats>
+  <div class="vspacer15"></div>
+  <div class="mat-h2 card-title">{{ data.snippet.title | slicer:20 }}
+  </div>
+  <div class="vspacer40"></div>
+  <div class="more-button more-text" (click)="onMore()">
+    <div class="cnt-row-centered">more...</div>
+  </div>
+</div>

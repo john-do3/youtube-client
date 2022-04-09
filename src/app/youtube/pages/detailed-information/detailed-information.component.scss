@@ -1,0 +1,49 @@
+@import "../../../common.scss";
+
+.margin-box {
+    margin: 20px;
+}
+
+.back-button {
+    width:80px;
+    background-image: url(./img/back_button.png);
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.image-big{
+    width:730px;
+    height: 461px;
+}
+
+.gray {
+    background-color: #F2F2F2;    
+}
+
+.right-box {
+    padding: 20px;
+    position: relative;
+}
+
+.gray-text{
+    color: #828282;
+}
+
+.stats-div {
+    position:absolute;
+    bottom: 15px;
+width:300px;
+}
+
+.box-shadow {
+    box-shadow: 5px 5px 5px -1px rgba(34, 60, 80, 0.2);
+    border-radius: 5px;
+}
+
+.mat-h3 {
+    margin:0;
+}
+
+.hspacer10{
+    height: 10px;
+}
