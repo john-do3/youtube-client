@@ -22,7 +22,7 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.add(this.headerService.SearchClicked.subscribe(
       (value) => {
-        this.isSearchResultsVisible = value;
+        this.isSearchResultsVisible = true;
       },
     ));
 

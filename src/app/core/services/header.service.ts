@@ -13,7 +13,7 @@ export class HeaderService {
   filterCriteria!: IFilter;
 
   isSearchSettingsVisibleChange: Subject<boolean> = new Subject<boolean>();
-  SearchClicked: Subject<boolean> = new Subject<boolean>();
+  SearchClicked: Subject<string> = new Subject<string>();
   SortClicked: Subject<ISortModel> = new Subject<ISortModel>();
   FilterClicked: Subject<IFilter> = new Subject<IFilter>();
 
@@ -22,9 +22,9 @@ export class HeaderService {
     this.isSearchSettingsVisibleChange.next(this.isSearchSettingsVisible);
   }
 
-  searchClick(): void {
+  searchClick(searchStr: string): void {
     this.isSearchResultsVisible = true;
-    this.SearchClicked.next(true);
+    this.SearchClicked.next(searchStr);
   }
 
   sortClick(sortType: ISortModel): void {

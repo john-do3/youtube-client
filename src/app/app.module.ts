@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared.module';
 import { HeaderService } from './core/services/header.service';
 import { UserService } from './core/services/user.service';
 import { loginRoute, youtubeRoute } from './project.constants';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   { path: loginRoute, loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
@@ -26,6 +27,7 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     CoreModule,
     SharedModule,
     RouterModule.forRoot(routes),

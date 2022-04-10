@@ -47,7 +47,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.searchSubject.pipe(
       debounceTime(1000),      
     ).subscribe(() => {
-      // todo search
+      this.headerService.searchClick(this.searchInput.value);
       console.log(this.searchInput.value);
     })
     );
@@ -60,7 +60,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   searchClick(): void {
     if (this.searchInput.value) {
       this.router.navigateByUrl(`${youtubeRoute}/main`);
-      this.headerService.searchClick();
+      this.headerService.searchClick(this.searchInput.value);
       this.isSearchClicked = true;
     }
   }
