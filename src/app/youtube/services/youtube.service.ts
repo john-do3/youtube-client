@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, mergeMap, Observable, of, throwError } from 'rxjs';
-import { youtubeAPIKey, youtubeAPISearchUrl, youtubeAPIVideosUrl } from 'src/app/project.constants';
+import { catchError, map, mergeMap, Observable, throwError } from 'rxjs';
+import { youtubeAPISearchUrl, youtubeAPIVideosUrl } from 'src/app/project.constants';
 import { ISearchItem } from 'src/app/shared/models/search-item.model';
 import { ISearchResponse } from '../models/search-response.model';
 import { ISnippetResponse } from '../models/snippet-response.model';
@@ -12,13 +12,12 @@ import { ISnippetResponse } from '../models/snippet-response.model';
 export class YoutubeService {
   data!: ISearchResponse;
   selectedData!: ISearchItem;
-  
+
   constructor(private http: HttpClient) { }
 
   getData(query: string, maxResults = 5): Observable<ISearchResponse> {
 
-    const params = new HttpParams()
-      .set('key', youtubeAPIKey)
+    const params = new HttpParams()      
       .set('type', 'video')
       .set('part', 'snippet')
       .set('maxresults', maxResults)
@@ -31,7 +30,7 @@ export class YoutubeService {
           return iDs;
         }),
         mergeMap(iDs =>
-          this.http.get<ISearchResponse>(`${youtubeAPIVideosUrl}?key=${youtubeAPIKey}&id=${iDs}&part=snippet,statistics`)
+          this.http.get<ISearchResponse>(`${youtubeAPIVideosUrl}?&id=${iDs}&part=snippet,statistics`)
         ),
         catchError(error => this.handleError(error)),
       )

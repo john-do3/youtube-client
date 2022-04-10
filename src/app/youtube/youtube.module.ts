@@ -8,6 +8,8 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { DetailedInformationComponent } from './pages/detailed-information/detailed-information.component';
 import { SharedModule } from '../shared/shared.module';
 import { YoutubeService } from './services/youtube.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ApiInterceptor } from './interceptors/api.interceptor';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -28,7 +30,9 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
   ],
-  providers: [YoutubeService],
+  providers: [
+    YoutubeService,
+  ],
   exports: [
     SearchItemComponent,
     SearchResultsComponent,

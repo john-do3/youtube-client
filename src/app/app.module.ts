@@ -11,7 +11,8 @@ import { SharedModule } from './shared/shared.module';
 import { HeaderService } from './core/services/header.service';
 import { UserService } from './core/services/user.service';
 import { loginRoute, youtubeRoute } from './project.constants';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ApiInterceptor } from './youtube/interceptors/api.interceptor';
 
 const routes: Routes = [
   { path: loginRoute, loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
@@ -33,7 +34,13 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
   ],
   exports: [RouterModule, CoreModule],
-  providers: [HeaderService, UserService],
+  providers: [HeaderService, UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
