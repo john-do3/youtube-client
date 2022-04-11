@@ -9,7 +9,6 @@ import { IFilter } from '../../../core/models/filter.model';
 import { ISearchItem } from '../../../shared/models/search-item.model';
 import { ISortModel } from '../../models/sort.model';
 import { ISearchResponse } from '../../models/search-response.model';
-import { searchData } from '../../models/search-data';
 import { YoutubeService } from '../../services/youtube.service';
 import { HttpErrorResponse } from '@angular/common/http';
 

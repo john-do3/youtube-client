@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private searchSubject = new Subject<string>();
   private subscriptions = new Subscription();
-  
+
   @ViewChild('searchInput')
   searchInput!: MatInput;
 
@@ -38,18 +38,18 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.add(
-    this.userService.IsLoggedIn.subscribe((val) => {
-      this.isLoggedIn = val;
-    })
+      this.userService.IsLoggedIn.subscribe((val) => {
+        this.isLoggedIn = val;
+      })
     );
 
     this.subscriptions.add(
-    this.searchSubject.pipe(
-      debounceTime(1000),      
-    ).subscribe(() => {
-      this.headerService.searchClick(this.searchInput.value);
-      console.log(this.searchInput.value);
-    })
+      this.searchSubject.pipe(
+        debounceTime(1000),
+      ).subscribe(() => {
+        if (this.searchInput.value.length >= 3)
+          this.headerService.searchClick(this.searchInput.value);
+      })
     );
   }
 
@@ -82,7 +82,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(loginRoute);
   }
 
-  applySearch(filterValue: any){
+  applySearch(filterValue: any) {
     this.searchSubject.next(filterValue.data);
   }
 }
