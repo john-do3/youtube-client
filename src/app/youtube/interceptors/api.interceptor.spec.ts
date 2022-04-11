@@ -5,8 +5,8 @@ import { ApiInterceptor } from './api.interceptor';
 describe('ApiInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      ApiInterceptor
-      ]
+      ApiInterceptor,
+    ],
   }));
 
   it('should be created', () => {

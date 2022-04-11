@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ISearchItem } from '../../../shared/models/search-item.model';
 import { youtubeRoute } from 'src/app/project.constants';
+import { ISearchItem } from '../../../shared/models/search-item.model';
 import { YoutubeService } from '../../services/youtube.service';
 
 @Component({
@@ -27,9 +27,7 @@ export class DetailedInformationComponent {
   }
 
   getImageSrc(): string {
-    if (this.data.snippet.thumbnails.maxres?.url)
-      return this.data.snippet.thumbnails.maxres.url;
-    else
-      return this.data.snippet.thumbnails.default.url;
+    if (this.data.snippet.thumbnails.maxres?.url) { return this.data.snippet.thumbnails.maxres.url; }
+    return this.data.snippet.thumbnails.default.url;
   }
 }

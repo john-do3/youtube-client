@@ -1,16 +1,14 @@
 import {
-  ChangeDetectorRef,
   Component, Input, OnDestroy, OnInit,
 } from '@angular/core';
 import * as moment from 'moment';
 import { HeaderService } from 'src/app/core/services/header.service';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { IFilter } from '../../../core/models/filter.model';
 import { ISearchItem } from '../../../shared/models/search-item.model';
 import { ISortModel } from '../../models/sort.model';
 import { ISearchResponse } from '../../models/search-response.model';
 import { YoutubeService } from '../../services/youtube.service';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-search-results',
@@ -18,14 +16,13 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
-
   private subscriptions = new Subscription();
 
   @Input()
-  filterCriteria!: IFilter;
+    filterCriteria!: IFilter;
 
   @Input()
-  data!: ISearchResponse;
+    data!: ISearchResponse;
 
   constructor(private headerService: HeaderService, private youtubeService: YoutubeService) {
     this.data = youtubeService.data;
@@ -52,7 +49,6 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         this.searchData(searchStr);
       }),
     );
-
   }
 
   ngOnDestroy(): void {

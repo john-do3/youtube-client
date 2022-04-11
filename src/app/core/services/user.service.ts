@@ -8,9 +8,10 @@ export class UserService {
   private userNameKey = 'userName';
 
   private tokenKey = 'authToken';
+
   IsLoggedIn: Subject<boolean> = new ReplaySubject<boolean>(1);
 
-  constructor(){
+  constructor() {
     const token = localStorage.getItem(this.tokenKey);
     this.IsLoggedIn.next(!!token);
   }

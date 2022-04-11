@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
@@ -11,7 +12,6 @@ import { SharedModule } from './shared/shared.module';
 import { HeaderService } from './core/services/header.service';
 import { UserService } from './core/services/user.service';
 import { loginRoute, youtubeRoute } from './project.constants';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './youtube/interceptors/api.interceptor';
 
 const routes: Routes = [
@@ -38,8 +38,8 @@ const routes: Routes = [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

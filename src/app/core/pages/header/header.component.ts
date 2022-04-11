@@ -1,7 +1,11 @@
-import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  Component, Input, OnDestroy, OnInit, ViewChild,
+} from '@angular/core';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
-import { debounceTime, distinctUntilChanged, Subject, Subscription } from 'rxjs';
+import {
+  debounceTime, Subject, Subscription,
+} from 'rxjs';
 import { loginRoute, youtubeRoute } from 'src/app/project.constants';
 import { ISortModel } from 'src/app/youtube/models/sort.model';
 import { HeaderService } from '../../services/header.service';
@@ -14,14 +18,17 @@ import { UserService } from '../../services/user.service';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   isSearchSettingsVisible: boolean = false;
+
   isSearchClicked: boolean = false;
+
   userName!: string | null;
 
   private searchSubject = new Subject<string>();
+
   private subscriptions = new Subscription();
 
   @ViewChild('searchInput')
-  searchInput!: MatInput;
+    searchInput!: MatInput;
 
   @Input() isLoggedIn: boolean = false;
 
@@ -40,16 +47,15 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.subscriptions.add(
       this.userService.IsLoggedIn.subscribe((val) => {
         this.isLoggedIn = val;
-      })
+      }),
     );
 
     this.subscriptions.add(
       this.searchSubject.pipe(
         debounceTime(1000),
       ).subscribe(() => {
-        if (this.searchInput.value.length >= 3)
-          this.headerService.searchClick(this.searchInput.value);
-      })
+        if (this.searchInput.value.length >= 3) { this.headerService.searchClick(this.searchInput.value); }
+      }),
     );
   }
 

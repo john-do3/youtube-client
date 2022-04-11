@@ -9,12 +9,17 @@ import { IFilter } from '../models/filter.model';
 
 export class HeaderService {
   isSearchSettingsVisible!: boolean;
+
   isSearchResultsVisible: boolean = false;
+
   filterCriteria!: IFilter;
 
   isSearchSettingsVisibleChange: Subject<boolean> = new Subject<boolean>();
+
   SearchClicked: Subject<string> = new Subject<string>();
+
   SortClicked: Subject<ISortModel> = new Subject<ISortModel>();
+
   FilterClicked: Subject<IFilter> = new Subject<IFilter>();
 
   searchSettingsClick(): void {
