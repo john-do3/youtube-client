@@ -7,7 +7,6 @@ import { SearchResultsComponent } from './pages/search-results/search-results.co
 import { FilterPipe } from './pipes/filter.pipe';
 import { DetailedInformationComponent } from './pages/detailed-information/detailed-information.component';
 import { SharedModule } from '../shared/shared.module';
-import { YoutubeService } from './services/youtube.service';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
@@ -28,9 +27,7 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
   ],
-  providers: [
-    YoutubeService,
-  ],
+  providers: [],
   exports: [
     SearchItemComponent,
     SearchResultsComponent,

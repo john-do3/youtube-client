@@ -8,7 +8,7 @@ import { IFilter } from '../../../core/models/filter.model';
 import { ISearchItem } from '../../../shared/models/search-item.model';
 import { ISortModel } from '../../models/sort.model';
 import { ISearchResponse } from '../../models/search-response.model';
-import { YoutubeService } from '../../services/youtube.service';
+import { searchData } from '../../models/search-data';
 
 @Component({
   selector: 'app-search-results',
@@ -16,16 +16,14 @@ import { YoutubeService } from '../../services/youtube.service';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit, OnDestroy {
+  data: ISearchResponse = searchData;
+
   private subscriptions = new Subscription();
 
   @Input()
     filterCriteria!: IFilter;
 
-  @Input()
-    data!: ISearchResponse;
-
-  constructor(private headerService: HeaderService, private youtubeService: YoutubeService) {
-    this.data = youtubeService.data;
+  constructor(private headerService: HeaderService) {
   }
 
   ngOnInit(): void {
@@ -43,23 +41,10 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         this.filterCriteria = criteria;
       }),
     );
-
-    this.subscriptions.add(
-      this.headerService.SearchClicked.subscribe((searchStr) => {
-        this.searchData(searchStr);
-      }),
-    );
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
-  }
-
-  searchData(searchStr: string): void {
-    this.youtubeService.getData(searchStr).subscribe((val: ISearchResponse) => {
-      this.youtubeService.data = val;
-      this.data = val;
-    });
   }
 
   sortData(sortType: ISortModel): void {

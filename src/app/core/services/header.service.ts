@@ -16,7 +16,7 @@ export class HeaderService {
 
   isSearchSettingsVisibleChange: Subject<boolean> = new Subject<boolean>();
 
-  SearchClicked: Subject<string> = new Subject<string>();
+  SearchClicked: Subject<boolean> = new Subject<boolean>();
 
   SortClicked: Subject<ISortModel> = new Subject<ISortModel>();
 
@@ -27,9 +27,9 @@ export class HeaderService {
     this.isSearchSettingsVisibleChange.next(this.isSearchSettingsVisible);
   }
 
-  searchClick(searchStr: string): void {
+  searchClick(): void {
     this.isSearchResultsVisible = true;
-    this.SearchClicked.next(searchStr);
+    this.SearchClicked.next(true);
   }
 
   sortClick(sortType: ISortModel): void {

@@ -9,13 +9,11 @@
     background-image: url(./img/back_button.png);
     background-repeat: no-repeat;
     cursor: pointer;
-    background-position-x: right;
-    background-position-y: top;
 }
 
 .image-big{
+    width:730px;
     height: 461px;
-    max-width: 650px;
 }
 
 .gray {
@@ -34,7 +32,7 @@
 .stats-div {
     position:absolute;
     bottom: 15px;
-width:90%;
+width:300px;
 }
 
 .box-shadow {

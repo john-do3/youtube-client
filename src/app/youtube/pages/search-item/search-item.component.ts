@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ISearchItem } from 'src/app/shared/models/search-item.model';
-import { YoutubeService } from '../../services/youtube.service';
 
 @Component({
   selector: 'app-search-item',
@@ -11,10 +10,9 @@ import { YoutubeService } from '../../services/youtube.service';
 export class SearchItemComponent {
   @Input() data!: ISearchItem;
 
-  constructor(private router: Router, private youtubeService: YoutubeService) { }
+  constructor(private router: Router) { }
 
   onMore(): void {
-    this.youtubeService.selectedData = this.data;
     this.router.navigateByUrl(`youtube/detailed/${this.data.id}`);
   }
 }

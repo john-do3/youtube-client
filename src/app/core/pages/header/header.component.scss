@@ -40,7 +40,8 @@
   height: 24px;
 }
 
-.login-button {  
+.login-button {
+  @extend .img-button;
   background-image: url(./img/login.png);
   width: 31px;
   height: 32px;

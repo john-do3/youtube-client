@@ -2,7 +2,7 @@
   <div class="div-row margin-box">
     <div class="back-button" (click)="onBack()"></div>
     <div class="div-row gray box-shadow">
-      <img class="image-big" [src]="getImageSrc()" />
+      <img class="image-big" src="{{ data.snippet.thumbnails.maxres.url }}" />
       <div class="right-box" appCardStyleDirective [date]="data.snippet.publishedAt">
         <div class="div-row">
           <span class="mat-h1">{{ data.snippet.title | slicer: 50 }}</span>

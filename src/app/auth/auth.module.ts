@@ -10,6 +10,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { UserService } from '../core/services/user.service';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -29,12 +30,14 @@ const routes: Routes = [
     MatInputModule,
     MatCardModule,
     MatGridListModule,
+
     RouterModule.forChild(routes),
   ],
   exports: [
     LoginComponent,
     RegisterComponent,
   ],
+  providers: [UserService],
   bootstrap: [],
 })
 export class AuthModule { }
