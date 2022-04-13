@@ -23,7 +23,7 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule, 
-    //ReactiveFormsModule,   
+    ReactiveFormsModule,   
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,

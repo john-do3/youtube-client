@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, NgForm, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 import { youtubeRoute } from 'src/app/project.constants';
@@ -16,10 +16,15 @@ export class LoginComponent implements OnInit {
 
   loginValid: boolean = true;
 
-  @ViewChild('loginForm')
-  loginForm!: NgForm;
- 
-  constructor(private userService: UserService, private router: Router) {
+  //@ViewChild('loginForm')
+  //loginForm!: NgForm;
+
+  loginForm: FormGroup = new FormGroup({
+    "username": new FormControl("",[Validators.required, Validators.email]),
+    "password": new FormControl("", [Validators.required, this.createPasswordStrengthValidator()])    
+  });
+
+  constructor(private userService: UserService, private router: Router ) {
 
   }
 
@@ -32,11 +37,36 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl(youtubeRoute);
   }
 
-  CheckPasswordInvalid(): void{
+  /*CheckPasswordInvalid(): void{
     let passwordInvalid = this.password.length < 3;
     
     if (passwordInvalid)
-      this.loginForm.form.controls['password'].setErrors({'passwordstrength': true});
+      this.loginForm.controls['password'].setErrors({'passwordstrength': true});
+  }*/
+
+  createPasswordStrengthValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+
+    const value = control.value;
+
+    if (!value) {
+      return null;
+    }
+
+    const isEnoughtLength = value.length >= 8;
+
+    const hasUpperCase = /[A-Z]+/.test(value);
+
+    const hasLowerCase = /[a-z]+/.test(value);
+
+    const hasNumeric = /[0-9]+/.test(value);
+
+    const hasSpecial = /[*@!#%&()^~{}]+/.test(value);
+
+    const passwordValid = isEnoughtLength && hasUpperCase && hasLowerCase && hasNumeric && hasSpecial;
+
+    return !passwordValid ? { passwordStrength: true } : null;
   }
+}
 
 }

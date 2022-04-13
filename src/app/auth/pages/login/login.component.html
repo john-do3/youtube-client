@@ -1,36 +1,57 @@
 <mat-card>
   <mat-card-content>
-    <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <h2>Login</h2>
       <mat-error *ngIf="!loginValid">
         The username and password were not recognized
       </mat-error>
 
       <mat-form-field>
-        <input matInput placeholder="Please enter a login email" [(ngModel)]="username" name="username" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
-        <mat-error *ngIf="loginForm.form.get('username')?.hasError('required')">
+        <input
+          matInput
+          placeholder="Please enter a login email"
+          [(ngModel)]="username"
+          name="username"
+          formControlName="username"
+        />
+        <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
           The login email is required
         </mat-error>
-        <mat-error *ngIf="loginForm.form.get('username')?.hasError('pattern')">
+        <mat-error *ngIf="loginForm.get('username')?.hasError('email')">
           The login email is invalid
         </mat-error>
       </mat-form-field>
 
-      <div class="vspacer15"></div>      
+      <div class="vspacer15"></div>
 
       <mat-form-field>
-        <input matInput type="password" placeholder="Please enter a password" [(ngModel)]="password" name="password" required (keyup)="CheckPasswordInvalid()">
-        <mat-error *ngIf="loginForm.form.get('password')?.hasError('required')">
+        <input
+          matInput
+          type="password"
+          placeholder="Please enter a password"
+          [(ngModel)]="password"
+          name="password"
+          formControlName="password"
+        />
+        <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
           The password is required
         </mat-error>
-        <mat-error *ngIf="loginForm.form.get('password')?.hasError('passwordstrength')">
-          Your password isn't strong enough
+        <mat-error
+          *ngIf="loginForm.get('password')?.hasError('passwordStrength')"
+        >
+          Your password isn't strong enough: at least 8 characters<br />
+          a mixture of both uppercase and lowercase letters<br />
+          a mixture of letters and numbers<br />
+          inclusion of at least one special character, e.g., ! @ # ? ]<br />
         </mat-error>
       </mat-form-field>
 
-      <div class="vspacer40"></div>      
+      <div class="vspacer40"></div>
+      <div class="vspacer5"></div>
 
-      <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
+      <button mat-raised-button color="primary" [disabled]="!loginForm.valid">
+        Login
+      </button>
     </form>
   </mat-card-content>
 </mat-card>
