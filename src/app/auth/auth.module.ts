@@ -5,7 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './pages/login/login.component';
@@ -22,7 +22,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    FormsModule,
+    FormsModule, 
+    //ReactiveFormsModule,   
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -31,6 +32,7 @@ const routes: Routes = [
     MatGridListModule,
     RouterModule.forChild(routes),
   ],
+  providers:[FormBuilder],
   exports: [
     LoginComponent,
     RegisterComponent,

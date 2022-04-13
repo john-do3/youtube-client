@@ -5,20 +5,31 @@
       <mat-error *ngIf="!loginValid">
         The username and password were not recognized
       </mat-error>
+
       <mat-form-field>
-        <input matInput placeholder="login" [(ngModel)]="username" name="username" required>
-        <mat-error>
-          Please provide a valid username
+        <input matInput placeholder="Please enter a login email" [(ngModel)]="username" name="username" required pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}">
+        <mat-error *ngIf="loginForm.form.get('username')?.hasError('required')">
+          The login email is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.form.get('username')?.hasError('pattern')">
+          The login email is invalid
         </mat-error>
       </mat-form-field>
+
       <div class="vspacer15"></div>      
+
       <mat-form-field>
-        <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
-        <mat-error>
-          Please provide a valid password
+        <input matInput type="password" placeholder="Please enter a password" [(ngModel)]="password" name="password" required (keyup)="CheckPasswordInvalid()">
+        <mat-error *ngIf="loginForm.form.get('password')?.hasError('required')">
+          The password is required
+        </mat-error>
+        <mat-error *ngIf="loginForm.form.get('password')?.hasError('passwordstrength')">
+          Your password isn't strong enough
         </mat-error>
       </mat-form-field>
-      <div class="vspacer15"></div>      
+
+      <div class="vspacer40"></div>      
+
       <button mat-raised-button color="primary" [disabled]="!loginForm.form.valid">Login</button>
     </form>
   </mat-card-content>
