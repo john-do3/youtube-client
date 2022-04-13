@@ -1,5 +1,7 @@
 <div class="middle-row">
-  <ng-container *ngFor="let item of data.items | filter:filterCriteria">
-    <app-search-item [data]="item"></app-search-item>
+  <ng-container *ngIf="data">
+    <ng-container *ngFor="let item of data.items | filter: filterCriteria">
+      <app-search-item [data]="item"></app-search-item>
+    </ng-container>
   </ng-container>
 </div>
