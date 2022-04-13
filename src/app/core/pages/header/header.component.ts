@@ -36,11 +36,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private router: Router,
     private headerService: HeaderService,
-  ) {
-    console.log('header constructed');
+  ) {    
     router.events.subscribe(() => {
       this.userName = this.userService.getUserName();
     });
+
+    this.isLoggedIn = this.userService.checkIsLoggedIn();
   }
 
   ngOnInit(): void {
