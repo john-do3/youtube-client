@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { searchData } from '../../models/search-data';
+import { youtubeRoute } from 'src/app/project.constants';
 import { ISearchItem } from '../../../shared/models/search-item.model';
+import { YoutubeService } from '../../services/youtube.service';
 
 @Component({
   selector: 'app-detailed-information',
@@ -13,15 +14,20 @@ export class DetailedInformationComponent {
 
   data!: ISearchItem;
 
-  constructor(private router: Router, private activateRoute: ActivatedRoute) {
+  constructor(private router: Router, private activateRoute: ActivatedRoute, private youtubeService: YoutubeService) {
     this.id = activateRoute.snapshot.params['id'];
 
     if (!this.id) router.navigateByUrl('main');
 
-    this.data = searchData.items.find((x) => x.id === this.id) as ISearchItem;
+    this.data = this.youtubeService.selectedData;//  .items.find((x) => x.id === this.id) as ISearchItem;
   }
 
   onBack(): void {
-    this.router.navigateByUrl('youtube/main');
+    this.router.navigateByUrl(`${youtubeRoute}/main`);
+  }
+
+  getImageSrc(): string {
+    if (this.data.snippet.thumbnails.maxres?.url) { return this.data.snippet.thumbnails.maxres.url; }
+    return this.data.snippet.thumbnails.default.url;
   }
 }

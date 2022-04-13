@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { loginRoute } from 'src/app/project.constants';
 import { UserService } from '../services/user.service';
 
 @Injectable({
@@ -11,11 +12,10 @@ export class LoggedInGuard implements CanActivate {
 
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.userService.checkIsLoggedIn()) {
-      console.log('access granted');
       return true;
     }
-    console.log('access denied');
-    this.router.navigateByUrl('auth');
+
+    this.router.navigateByUrl(loginRoute);
     return false;
   }
 }

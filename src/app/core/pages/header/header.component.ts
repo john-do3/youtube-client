@@ -1,6 +1,12 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import {
+  Component, Input, OnDestroy, OnInit, ViewChild,
+} from '@angular/core';
 import { MatInput } from '@angular/material/input';
 import { Router } from '@angular/router';
+import {
+  debounceTime, Subject, Subscription,
+} from 'rxjs';
+import { loginRoute, youtubeRoute } from 'src/app/project.constants';
 import { ISortModel } from 'src/app/youtube/models/sort.model';
 import { HeaderService } from '../../services/header.service';
 import { UserService } from '../../services/user.service';
@@ -10,12 +16,16 @@ import { UserService } from '../../services/user.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   isSearchSettingsVisible: boolean = false;
 
   isSearchClicked: boolean = false;
 
   userName!: string | null;
+
+  private searchSubject = new Subject<string>();
+
+  private subscriptions = new Subscription();
 
   @ViewChild('searchInput')
     searchInput!: MatInput;
@@ -27,16 +37,36 @@ export class HeaderComponent {
     private router: Router,
     private headerService: HeaderService,
   ) {
+    console.log('header constructed');
     router.events.subscribe(() => {
       this.userName = this.userService.getUserName();
-      this.isLoggedIn = this.userService.checkIsLoggedIn();
     });
+  }
+
+  ngOnInit(): void {
+    this.subscriptions.add(
+      this.userService.IsLoggedIn.subscribe((val) => {
+        this.isLoggedIn = val;
+      }),
+    );
+
+    this.subscriptions.add(
+      this.searchSubject.pipe(
+        debounceTime(1000),
+      ).subscribe(() => {
+        if (this.searchInput.value.length >= 3) { this.headerService.searchClick(this.searchInput.value); }
+      }),
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   searchClick(): void {
     if (this.searchInput.value) {
-      this.router.navigateByUrl('youtube/main');
-      this.headerService.searchClick();
+      this.router.navigateByUrl(`${youtubeRoute}/main`);
+      this.headerService.searchClick(this.searchInput.value);
       this.isSearchClicked = true;
     }
   }
@@ -49,8 +79,16 @@ export class HeaderComponent {
     this.headerService.sortClick(sortType);
   }
 
+  loginClick(): void {
+    this.router.navigateByUrl(loginRoute);
+  }
+
   logoutClick(): void {
     this.userService.logoutUser();
-    this.router.navigateByUrl('auth');
+    this.router.navigateByUrl(loginRoute);
+  }
+
+  applySearch(filterValue: any) {
+    this.searchSubject.next(filterValue.data);
   }
 }

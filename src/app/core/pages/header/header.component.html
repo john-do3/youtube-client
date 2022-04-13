@@ -5,16 +5,16 @@
       <div class="logo"></div>
       <div class="hspacer5"></div>
 
-      <mat-form-field [style.width.px]="400">
+      <mat-form-field [style.width.px]="400" [floatLabel]="'always'">
         <mat-label>search</mat-label>
         <input
           matInput
           placeholder="What are you want to find out?"
           #searchInput="matInput"
+          (input)="applySearch($event)"
         />
       </mat-form-field>
 
-      <div class="search-button" (click)="searchClick()"></div>
       <div class="hspacer10"></div>
 
       <div
@@ -24,12 +24,16 @@
       ></div>
       <div class="hspacer50"></div>
 
-      <label>{{ userName }}</label>
-      <div class="hspacer5"></div>
-      <div class="login-button"></div>
+      <label *ngIf="isLoggedIn">[{{ userName }}]</label>
+      <div class="hspacer5"></div>      
+      <div *ngIf="!isLoggedIn" class="img-button" (click)="loginClick()">
+        Login
+      </div>
       <div *ngIf="isLoggedIn" class="img-button" (click)="logoutClick()">
         Logout
       </div>
+      <div class="hspacer5"></div>      
+      <div class="login-button"></div>
       <span class="spacer"></span>
     </mat-toolbar-row>
 
