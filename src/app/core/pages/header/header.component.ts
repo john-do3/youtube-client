@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Component, Input, OnDestroy, OnInit, ViewChild,
 } from '@angular/core';
 import { MatInput } from '@angular/material/input';
@@ -36,18 +37,17 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private router: Router,
     private headerService: HeaderService,
-  ) {    
-    router.events.subscribe(() => {
-      this.userName = this.userService.getUserName();
-    });
-
-    this.isLoggedIn = this.userService.checkIsLoggedIn();
+    private ref: ChangeDetectorRef
+  ) {        
+    
   }
 
   ngOnInit(): void {
     this.subscriptions.add(
       this.userService.IsLoggedIn.subscribe((val) => {
         this.isLoggedIn = val;
+        this.userName = this.userService.getUserName();
+        this.ref.detectChanges();
       }),
     );
 

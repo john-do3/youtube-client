@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,7 @@ export class UserService {
 
   private tokenKey = 'authToken';
 
-  IsLoggedIn: Subject<boolean> = new ReplaySubject<boolean>(1);
+  IsLoggedIn: Subject<boolean> = new Subject<boolean>();
 
   constructor() {
     const token = localStorage.getItem(this.tokenKey);
