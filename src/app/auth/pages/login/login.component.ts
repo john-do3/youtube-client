@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, NgForm, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import {
+  AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 import { youtubeRoute } from 'src/app/project.constants';
@@ -12,19 +14,17 @@ import { youtubeRoute } from 'src/app/project.constants';
 
 export class LoginComponent implements OnInit {
   username!: string;
+
   password!: string;
 
   loginValid: boolean = true;
 
-  //@ViewChild('loginForm')
-  //loginForm!: NgForm;
-
   loginForm: FormGroup = new FormGroup({
-    "username": new FormControl("",[Validators.required, Validators.email]),
-    "password": new FormControl("", [Validators.required, this.createPasswordStrengthValidator()])    
+    username: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, this.createPasswordStrengthValidator()]),
   });
 
-  constructor(private userService: UserService, private router: Router ) {
+  constructor(private userService: UserService, private router: Router) {
 
   }
 
@@ -37,36 +37,34 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl(youtubeRoute);
   }
 
-  /*CheckPasswordInvalid(): void{
+  /* CheckPasswordInvalid(): void{
     let passwordInvalid = this.password.length < 3;
-    
+
     if (passwordInvalid)
       this.loginForm.controls['password'].setErrors({'passwordstrength': true});
-  }*/
+  } */
 
   createPasswordStrengthValidator(): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null => {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const { value } = control;
 
-    const value = control.value;
+      if (!value) {
+        return null;
+      }
 
-    if (!value) {
-      return null;
-    }
+      const isEnoughtLength = value.length >= 8;
 
-    const isEnoughtLength = value.length >= 8;
+      const hasUpperCase = /[A-Z]+/.test(value);
 
-    const hasUpperCase = /[A-Z]+/.test(value);
+      const hasLowerCase = /[a-z]+/.test(value);
 
-    const hasLowerCase = /[a-z]+/.test(value);
+      const hasNumeric = /[0-9]+/.test(value);
 
-    const hasNumeric = /[0-9]+/.test(value);
+      const hasSpecial = /[*@!#%&()^~{}]+/.test(value);
 
-    const hasSpecial = /[*@!#%&()^~{}]+/.test(value);
+      const passwordValid = isEnoughtLength && hasUpperCase && hasLowerCase && hasNumeric && hasSpecial;
 
-    const passwordValid = isEnoughtLength && hasUpperCase && hasLowerCase && hasNumeric && hasSpecial;
-
-    return !passwordValid ? { passwordStrength: true } : null;
+      return !passwordValid ? { passwordStrength: true } : null;
+    };
   }
-}
-
 }

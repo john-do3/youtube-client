@@ -22,8 +22,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    FormsModule, 
-    ReactiveFormsModule,   
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -32,7 +32,7 @@ const routes: Routes = [
     MatGridListModule,
     RouterModule.forChild(routes),
   ],
-  providers:[FormBuilder],
+  providers: [FormBuilder],
   exports: [
     LoginComponent,
     RegisterComponent,

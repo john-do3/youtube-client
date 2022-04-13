@@ -37,9 +37,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private router: Router,
     private headerService: HeaderService,
-    private ref: ChangeDetectorRef
-  ) {   
-    
+    private ref: ChangeDetectorRef,
+  ) {
+
   }
 
   ngOnInit(): void {
@@ -91,7 +91,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl(loginRoute);
   }
 
-  createCardClick(): void{
+  createCardClick(): void {
     this.router.navigateByUrl(`${youtubeRoute}/${createCardRoute}`);
   }
 
