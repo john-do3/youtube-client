@@ -38,11 +38,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private router: Router,
     private headerService: HeaderService,
     private ref: ChangeDetectorRef
-  ) {        
+  ) {   
     
   }
 
   ngOnInit(): void {
+    this.userName = this.userService.getUserName();
+    this.isLoggedIn = this.userService.checkIsLoggedIn();
     this.subscriptions.add(
       this.userService.IsLoggedIn.subscribe((val) => {
         this.isLoggedIn = val;
@@ -90,6 +92,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   applySearch(filterValue: any) {
+    this.isSearchClicked = true;
     this.searchSubject.next(filterValue.data);
   }
 }
