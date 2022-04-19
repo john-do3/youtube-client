@@ -17,4 +17,9 @@ export class SearchItemComponent {
     this.youtubeService.selectedData = this.data;
     this.router.navigateByUrl(`youtube/detailed/${this.data.id}`);
   }
+
+  getImageSrc(): string {
+    if (this.data.snippet.thumbnails.maxres?.url) { return this.data.snippet.thumbnails.maxres.url; }
+    return this.data.snippet.thumbnails.default.url;
+  }
 }

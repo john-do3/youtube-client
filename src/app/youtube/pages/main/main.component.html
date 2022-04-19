@@ -1,3 +1,4 @@
 <app-search-results #searchResults  
-  [filterCriteria]="filterCriteria"
+  
+  [data]="$any(data$ | async)"
 ></app-search-results>

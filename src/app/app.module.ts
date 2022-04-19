@@ -13,6 +13,10 @@ import { HeaderService } from './core/services/header.service';
 import { UserService } from './core/services/user.service';
 import { loginRoute, youtubeRoute } from './project.constants';
 import { ApiInterceptor } from './youtube/interceptors/api.interceptor';
+import { StoreModule } from '@ngrx/store';
+import { dataReducer } from './redux/reducers/data.reducer';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 
 const routes: Routes = [
   { path: loginRoute, loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
@@ -32,6 +36,12 @@ const routes: Routes = [
     CoreModule,
     SharedModule,
     RouterModule.forRoot(routes),
+    StoreModule.forRoot({data: dataReducer}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    })
   ],
   exports: [RouterModule, CoreModule],
   providers: [HeaderService, UserService,
