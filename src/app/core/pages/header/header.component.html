@@ -29,6 +29,10 @@
       <div *ngIf="!isLoggedIn" class="img-button" (click)="loginClick()">
         Login
       </div>
+      <div *ngIf="isLoggedIn" class="img-button" (click)="createCardClick()">
+        Create card
+      </div>
+      <div class="hspacer5" *ngIf="isLoggedIn"></div>      
       <div *ngIf="isLoggedIn" class="img-button" (click)="logoutClick()">
         Logout
       </div>

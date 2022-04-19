@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import {
   debounceTime, Subject, Subscription,
 } from 'rxjs';
-import { loginRoute, youtubeRoute } from 'src/app/project.constants';
+import { createCardRoute, loginRoute, youtubeRoute } from 'src/app/project.constants';
 import { ISortModel } from 'src/app/youtube/models/sort.model';
 import { HeaderService } from '../../services/header.service';
 import { UserService } from '../../services/user.service';
@@ -37,9 +37,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private userService: UserService,
     private router: Router,
     private headerService: HeaderService,
-    private ref: ChangeDetectorRef
-  ) {   
-    
+    private ref: ChangeDetectorRef,
+  ) {
+
   }
 
   ngOnInit(): void {
@@ -89,6 +89,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logoutClick(): void {
     this.userService.logoutUser();
     this.router.navigateByUrl(loginRoute);
+  }
+
+  createCardClick(): void {
+    this.router.navigateByUrl(`${youtubeRoute}/${createCardRoute}`);
   }
 
   applySearch(filterValue: any) {

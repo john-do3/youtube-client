@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/core/services/user.service';
 import { youtubeRoute } from 'src/app/project.constants';
@@ -16,6 +19,11 @@ export class LoginComponent implements OnInit {
 
   loginValid: boolean = true;
 
+  loginForm: FormGroup = new FormGroup({
+    username: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required, this.createPasswordStrengthValidator()]),
+  });
+
   constructor(private userService: UserService, private router: Router) {
 
   }
@@ -27,5 +35,36 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.userService.loginUser(this.username);
     this.router.navigateByUrl(youtubeRoute);
+  }
+
+  /* CheckPasswordInvalid(): void{
+    let passwordInvalid = this.password.length < 3;
+
+    if (passwordInvalid)
+      this.loginForm.controls['password'].setErrors({'passwordstrength': true});
+  } */
+
+  createPasswordStrengthValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const { value } = control;
+
+      if (!value) {
+        return null;
+      }
+
+      const isEnoughtLength = value.length >= 8;
+
+      const hasUpperCase = /[A-Z]+/.test(value);
+
+      const hasLowerCase = /[a-z]+/.test(value);
+
+      const hasNumeric = /[0-9]+/.test(value);
+
+      const hasSpecial = /[*@!#%&()^~{}]+/.test(value);
+
+      const passwordValid = isEnoughtLength && hasUpperCase && hasLowerCase && hasNumeric && hasSpecial;
+
+      return !passwordValid ? { passwordStrength: true } : null;
+    };
   }
 }

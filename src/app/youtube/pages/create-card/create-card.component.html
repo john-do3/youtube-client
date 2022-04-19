@@ -1,0 +1,115 @@
+<mat-card>
+  <mat-card-content>
+    <form [formGroup]="createCardForm" (ngSubmit)="onSubmit()">
+      <h2>Create new card</h2>
+      <mat-error *ngIf="!createCardForm.valid">
+        The form has errors
+      </mat-error>
+      <div class="vspacer15"></div>
+
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Title"          
+          name="title"
+          formControlName="title"
+        />
+        <mat-error *ngIf="createCardForm.get('title')?.hasError('required')">
+          Please enter a title
+        </mat-error>
+        <mat-error *ngIf="createCardForm.get('title')?.hasError('minlength')">
+          The title is too short
+        </mat-error>
+        <mat-error *ngIf="createCardForm.get('title')?.hasError('maxlength')">
+          The title is too long
+        </mat-error>
+      </mat-form-field>
+
+      <div class="vspacer15"></div>
+
+      <mat-form-field>
+        <input
+          matInput          
+          placeholder="Description"          
+          name="description"
+          formControlName="description"
+        />        
+        <mat-error
+          *ngIf="createCardForm.get('description')?.hasError('maxlength')"
+        >
+          The description is too long
+        </mat-error>
+      </mat-form-field>
+
+      <div class="vspacer15"></div>
+
+      <mat-form-field>
+        <input
+          matInput          
+          placeholder="Img"          
+          name="imglink"
+          formControlName="imglink"
+        />        
+        <mat-error
+          *ngIf="createCardForm.get('imglink')?.hasError('required')"
+        >
+          Please enter a link to the image
+        </mat-error>
+        <mat-error
+          *ngIf="createCardForm.get('imglink')?.hasError('pattern')"
+        >
+          The image link is invalid
+        </mat-error>
+      </mat-form-field>
+
+      <div class="vspacer15"></div>
+
+      <mat-form-field>
+        <input
+          matInput          
+          placeholder="Link video"          
+          name="videolink"
+          formControlName="videolink"
+        />        
+        <mat-error
+          *ngIf="createCardForm.get('videolink')?.hasError('required')"
+        >
+          Please enter a link to the image
+        </mat-error>
+        <mat-error
+          *ngIf="createCardForm.get('videolink')?.hasError('pattern')"
+        >
+          The video link is invalid
+        </mat-error>
+      </mat-form-field>
+
+      <div class="vspacer15"></div>
+
+      <mat-form-field>
+        <input
+          matInput          
+          placeholder="Creation date"          
+          name="datecreated"
+          formControlName="datecreated"
+        />        
+        <mat-error
+          *ngIf="createCardForm.get('datecreated')?.hasError('required')"
+        >
+          Please enter a creation date
+        </mat-error>
+        <mat-error
+          *ngIf="createCardForm.get('datecreated')?.hasError('datecreated')"
+        >
+          The date is invalid
+        </mat-error>
+      </mat-form-field>
+
+      <div class="vspacer40"></div>
+      <div class="vspacer5"></div>
+
+      <button mat-raised-button color="primary" [disabled]="!createCardForm.valid">
+        Create new card
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
