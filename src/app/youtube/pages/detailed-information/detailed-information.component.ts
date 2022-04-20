@@ -19,7 +19,7 @@ export class DetailedInformationComponent {
 
     if (!this.id) router.navigateByUrl('main');
 
-    this.data = this.youtubeService.selectedData;//  .items.find((x) => x.id === this.id) as ISearchItem;
+    this.data = this.youtubeService.selectedData;
   }
 
   onBack(): void {

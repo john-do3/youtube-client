@@ -37,13 +37,6 @@ export class LoginComponent implements OnInit {
     this.router.navigateByUrl(youtubeRoute);
   }
 
-  /* CheckPasswordInvalid(): void{
-    let passwordInvalid = this.password.length < 3;
-
-    if (passwordInvalid)
-      this.loginForm.controls['password'].setErrors({'passwordstrength': true});
-  } */
-
   createPasswordStrengthValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const { value } = control;

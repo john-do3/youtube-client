@@ -5,7 +5,7 @@ import {
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { urlRegex, youtubeRoute } from 'src/app/project.constants';
-import { addData, retrievedSearchData } from 'src/app/redux/actions/data.action';
+import { addData } from 'src/app/redux/actions/data.action';
 import { ISearchItem } from 'src/app/shared/models/search-item.model';
 
 @Component({
@@ -26,35 +26,34 @@ export class CreateCardComponent {
     datecreated: new FormControl('', [Validators.required, this.createDateValidator()]),
   });
 
-  constructor(private store: Store, private router: Router){}
-  
+  constructor(private store: Store, private router: Router) {}
+
   onSubmit(): void {
-    
     const newCardData:ISearchItem = {
-      snippet: 
+      snippet:
       {
         title: this.createCardForm.get('title')?.value,
         description: this.createCardForm.get('description')?.value,
         publishedAt: new Date().toString(),
-        channelId:'custom',
-        thumbnails:{
-          default:{
+        channelId: 'custom',
+        thumbnails: {
+          default: {
             url: this.createCardForm.get('imglink')?.value,
-            width:100,
-            height:100
-          }
-        }
+            width: 100,
+            height: 100,
+          },
+        },
       },
       statistics: {
         viewCount: '0',
         likeCount: '0',
         dislikeCount: '0',
         favoriteCount: '0',
-        commentCount: '0'
-      }
-    }; 
-    
-    this.store.dispatch(addData({newData: newCardData}));
+        commentCount: '0',
+      },
+    };
+
+    this.store.dispatch(addData({ newData: newCardData }));
     this.router.navigateByUrl(`${youtubeRoute}/main`);
   }
 
