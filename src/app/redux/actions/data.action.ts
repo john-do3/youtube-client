@@ -7,8 +7,18 @@ export const addData = createAction(
     props<{ newData: ISearchItem }>()
 );
 
+export const loadData = createAction(
+    '[Data/API] Load data',
+    props<{ searchStr: string }>()
+);
+
+export const loadDataFail = createAction(
+    '[Data/API] Load data fail',
+    props<{ error: any }>()
+);
+
 export const retrievedSearchData = createAction(
-    '[Data/API] Search Data',
+    '[Data/API] Retrieved data',
     props<{ searchData: ReadonlyArray<ISearchItem> }>()
 );
 

@@ -14,9 +14,11 @@ import { UserService } from './core/services/user.service';
 import { loginRoute, youtubeRoute } from './project.constants';
 import { ApiInterceptor } from './youtube/interceptors/api.interceptor';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 import { dataReducer } from './redux/reducers/data.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { DataEffects } from './redux/effects/data.effect';
 
 const routes: Routes = [
   { path: loginRoute, loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
@@ -37,6 +39,8 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forRoot(routes),
     StoreModule.forRoot({data: dataReducer}),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([DataEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode

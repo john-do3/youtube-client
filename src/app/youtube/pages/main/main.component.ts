@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { map, Subscription } from 'rxjs';
 import { IFilter } from 'src/app/core/models/filter.model';
 import { HeaderService } from 'src/app/core/services/header.service';
-import { retrievedSearchData, sortData } from 'src/app/redux/actions/data.action';
+import { loadData, retrievedSearchData, sortData } from 'src/app/redux/actions/data.action';
+import { stateData } from 'src/app/redux/reducers/data.reducer';
 import { selectData } from 'src/app/redux/selectors/data.selector';
 import { ISearchResponse } from '../../models/search-response.model';
 import { YoutubeService } from '../../services/youtube.service';
@@ -14,10 +15,10 @@ import { YoutubeService } from '../../services/youtube.service';
   styleUrls: ['./main.component.scss'],
 })
 export class MainComponent implements OnInit, OnDestroy {
-  data$ = this.store.select(selectData);
+  data$ = this.store.select(selectData).pipe(
+    map((data: stateData) => data.cardData)
+  );
   
-  //filterCriteria!: IFilter;
-
   isSearchResultsVisible!: boolean;
 
   private subscriptions = new Subscription();
@@ -29,7 +30,12 @@ export class MainComponent implements OnInit, OnDestroy {
     ) {
     this.subscriptions.add(
       this.headerService.SearchClicked.subscribe((searchStr) => {
-        this.searchData(searchStr);
+        
+        this.store.dispatch(loadData({searchStr}));
+        /*this.youtubeService.getData(searchStr).subscribe((val: ISearchResponse) => {
+          this.store.dispatch(retrievedSearchData({ searchData: val.items }));
+        });*/
+
       }),
     );
 
@@ -43,17 +49,10 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.isSearchResultsVisible = this.headerService.isSearchResultsVisible;
-    //this.filterCriteria = this.headerService.filterCriteria;
   }
 
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe();
-  }
-
-  searchData(searchStr: string): void {
-    this.youtubeService.getData(searchStr).subscribe((val: ISearchResponse) => {
-      this.store.dispatch(retrievedSearchData({ searchData: val.items }));
-    });
   }
 
 }
