@@ -4,6 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-found.component';
@@ -13,6 +17,8 @@ import { HeaderService } from './core/services/header.service';
 import { UserService } from './core/services/user.service';
 import { loginRoute, youtubeRoute } from './project.constants';
 import { ApiInterceptor } from './youtube/interceptors/api.interceptor';
+import { dataReducer } from './redux/reducers/data.reducer';
+import { DataEffects } from './redux/effects/data.effect';
 
 const routes: Routes = [
   { path: loginRoute, loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
@@ -32,6 +38,14 @@ const routes: Routes = [
     CoreModule,
     SharedModule,
     RouterModule.forRoot(routes),
+    StoreModule.forRoot({ data: dataReducer }),
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([DataEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    }),
   ],
   exports: [RouterModule, CoreModule],
   providers: [HeaderService, UserService,

@@ -1,6 +1,6 @@
 <div class="middle-row">
   <ng-container *ngIf="data">
-    <ng-container *ngFor="let item of data.items | filter: filterCriteria">
+    <ng-container *ngFor="let item of data | filter: filterCriteria">
       <app-search-item [data]="item"></app-search-item>
     </ng-container>
   </ng-container>

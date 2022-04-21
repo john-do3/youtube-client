@@ -1,7 +1,7 @@
 export interface ISearchItem {
-  kind: string;
-  etag: string;
-  id: string;
+  kind?: string;
+  etag?: string;
+  id?: string;
   snippet: {
     publishedAt: string;
     channelId: string;
@@ -13,37 +13,37 @@ export interface ISearchItem {
         width: number;
         height: number;
       },
-      medium:{
+      medium?:{
         url:string;
         width: number;
         height: number;
       },
-      high:{
+      high?:{
         url:string;
         width: number;
         height: number;
       },
-      standard:{
+      standard?:{
         url:string;
         width: number;
         height: number;
       },
-      maxres:{
+      maxres?:{
         url:string;
         width: number;
         height: number;
       }
     };
-    channelTitle: string,
-    tags:string[];
-    categoryId: string;
-    liveBroadcastContent: string;
+    channelTitle?: string,
+    tags?:string[];
+    categoryId?: string;
+    liveBroadcastContent?: string;
     defaultLanguage?: string;
-    localized:{
+    localized?:{
       title: string;
       description: string;
     };
-    defaultAudioLanguage: string;
+    defaultAudioLanguage?: string;
   };
   statistics:{
     viewCount: string;

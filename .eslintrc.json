@@ -18,9 +18,10 @@
         "airbnb-base",
         "airbnb-typescript/base",
         "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"        
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:ngrx/recommended"
       ],
-      "rules": {
+      "rules": {        
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -38,9 +39,15 @@
           }
         ],
         "no-console": "off",
-        "max-len": ["error", { "code": 1500 }],
+        "max-len": [
+          "error",
+          {
+            "code": 1500
+          }
+        ],
         "import/prefer-default-export": "off",
-        "@typescript-eslint/no-useless-constructor":"off",
+        "@typescript-eslint/no-useless-constructor": "off",
+        "@typescript-eslint/indent": "off",
         "class-methods-use-this": "off"
       }
     },

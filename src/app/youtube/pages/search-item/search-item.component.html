@@ -1,5 +1,5 @@
 <div class="card_1 box-shadow" appCardStyleDirective [date]="data.snippet.publishedAt">
-  <img class="thumbnail" src="{{ data.snippet.thumbnails.high.url }}" />
+  <img class="thumbnail" [src]="getImageSrc()" />
   <app-stats [data]="data"></app-stats>
   <div class="vspacer15"></div>
   <div class="mat-h2 card-title">{{ data.snippet.title | slicer:20 }}

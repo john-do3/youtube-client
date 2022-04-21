@@ -107,7 +107,7 @@
       <div class="vspacer40"></div>
       <div class="vspacer5"></div>
 
-      <button mat-raised-button color="primary" [disabled]="!createCardForm.valid">
+      <button mat-raised-button color="primary" [disabled]="!createCardForm.valid" (click)="onSubmit()">
         Create new card
       </button>
     </form>
